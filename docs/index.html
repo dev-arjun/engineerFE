@@ -137,12 +137,6 @@
             <span>@nagxrjun</span>
           </a>
 
-          <!-- Add Post Button -->
-          <button onclick="openNewPostModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm">
-            <i data-lucide="plus-circle" class="w-4 h-4"></i>
-            <span class="hidden sm:inline">Add Post</span>
-          </button>
-
           <!-- Light / Dark Mode Toggle -->
           <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition" aria-label="Toggle theme">
             <i data-lucide="sun" id="theme-icon-light" class="w-4 h-4 hidden"></i>
@@ -305,66 +299,6 @@
       <div id="modal-content" class="space-y-4">
         <!-- Rendered via JS -->
       </div>
-    </div>
-  </div>
-
-  <div id="post-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 relative shadow-2xl">
-      <button onclick="closeNewPostModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Close modal">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div class="flex items-center gap-2 mb-4">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
-          +
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Publish New SDET Post</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Add content and tags; category tabs will update automatically!</p>
-        </div>
-      </div>
-
-      <form onsubmit="handleCreatePost(event)" class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Post Title</label>
-          <input type="text" id="new-title" required placeholder="e.g. Solving StaleElement Exceptions in Playwright Dynamic Tables" 
-                 class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Read Time</label>
-            <input type="text" id="new-readtime" placeholder="e.g. 5 min read" value="5 min read"
-                   class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tags (Comma-separated)</label>
-            <input type="text" id="new-tags" required placeholder="Playwright, Locators, Flakiness" 
-                   class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Short Summary</label>
-          <textarea id="new-summary" rows="2" required placeholder="Brief description of the problem, fix, or concept learned..." 
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Code Snippet / Test Blueprint</label>
-          <textarea id="new-code" rows="4" placeholder="// Paste your test script or locator snippet here..." 
-                    class="w-full font-mono text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
-        </div>
-
-        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-200 dark:border-slate-800">
-          <button type="button" onclick="closeNewPostModal()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition">
-            Cancel
-          </button>
-          <button type="submit" class="px-5 py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm">
-            Publish to Blog
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 
@@ -707,128 +641,6 @@ export const options = {
       modal.classList.remove('flex');
     }
 
-    // Modal Handling for Adding New Post
-    function openNewPostModal() {
-      const modal = document.getElementById('post-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeNewPostModal() {
-      const modal = document.getElementById('post-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    // Publish straight to GitHub: creates posts/<slug>.md in the
-    // dev-arjun/engineerFE repo via the GitHub Contents API.
-    // Needs a fine-grained personal access token (Contents: read + write
-    // on this repo); asked once per browser session and kept only in
-    // sessionStorage, never in the repo.
-    // Note: this saves the Markdown file. The live site refreshes after
-    // docs/ is rebuilt (python3 build.py docs) and pushed.
-    const GH_OWNER = 'dev-arjun';
-    const GH_REPO = 'engineerFE';
-    const GH_BRANCH = 'main';
-
-    function ghSlugify(title) {
-      const s = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
-      return s || ('post-' + Date.now());
-    }
-
-    function ghBase64(str) {
-      const bytes = new TextEncoder().encode(str);
-      let bin = '';
-      for (const b of bytes) bin += String.fromCharCode(b);
-      return btoa(bin);
-    }
-
-    function fmEscape(s) {
-      return String(s).replace(/\\/g, '\\\\').replace(/"/g, "'");
-    }
-
-    async function handleCreatePost(e) {
-      e.preventDefault();
-      const title = document.getElementById('new-title').value.trim();
-      const readTime = document.getElementById('new-readtime').value.trim() || '5 min read';
-      const rawTags = document.getElementById('new-tags').value.trim();
-      const summary = document.getElementById('new-summary').value.trim();
-      const code = document.getElementById('new-code').value.trim();
-
-      if (!title || !rawTags || !summary) return;
-
-      const parsedTags = rawTags
-        .split(',')
-        .map(t => t.trim().replace(/^#/, ''))
-        .filter(t => t.length > 0);
-
-      let ghToken = sessionStorage.getItem('sdet_gh_token');
-      if (!ghToken) {
-        ghToken = prompt('Enter your GitHub token to publish (kept only in this browser session):');
-        if (!ghToken) return;
-        ghToken = ghToken.trim();
-        sessionStorage.setItem('sdet_gh_token', ghToken);
-      }
-
-      const slug = ghSlugify(title);
-      const date = new Date().toISOString().split('T')[0];
-      const md =
-        '---\n' +
-        'title: "' + fmEscape(title) + '"\n' +
-        'date: ' + date + '\n' +
-        (parsedTags.length ? 'tags: "' + fmEscape(parsedTags.join(', ')) + '"\n' : '') +
-        'description: "' + fmEscape(summary) + '"\n' +
-        'readtime: "' + fmEscape(readTime) + '"\n' +
-        '---\n\n' +
-        summary + '\n' +
-        (code ? '\n```\n' + code.replace(/```/g, "'''") + '\n```\n' : '');
-
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      const originalLabel = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Publishing...';
-
-      const headers = {
-        'Authorization': 'Bearer ' + ghToken,
-        'Accept': 'application/vnd.github+json'
-      };
-      const url = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/posts/' + slug + '.md';
-
-      try {
-        const existing = await fetch(url, { headers });
-        if (existing.status === 200) throw new Error('A post with this title already exists.');
-        if (existing.status === 401) {
-          sessionStorage.removeItem('sdet_gh_token');
-          throw new Error('Token rejected by GitHub. Try again.');
-        }
-        if (existing.status !== 404) throw new Error('Could not reach GitHub (HTTP ' + existing.status + ').');
-
-        const put = await fetch(url, {
-          method: 'PUT',
-          headers: Object.assign({}, headers, { 'Content-Type': 'application/json' }),
-          body: JSON.stringify({
-            message: 'Add post: ' + title,
-            content: ghBase64(md),
-            branch: GH_BRANCH
-          })
-        });
-        if (put.status === 401) {
-          sessionStorage.removeItem('sdet_gh_token');
-          throw new Error('Token rejected by GitHub. Try again.');
-        }
-        if (!put.ok) throw new Error('GitHub refused the file (HTTP ' + put.status + ').');
-
-        e.target.reset();
-        closeNewPostModal();
-        showToast('Saved to GitHub! It goes live after the next site rebuild.');
-      } catch (err) {
-        showToast('Publish failed: ' + err.message);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalLabel;
-      }
-    }
-
     function copyPostLink(slug) {
       const url = window.location.origin + window.location.pathname + '#post-' + encodeURIComponent(slug);
       const temp = document.createElement('input');
@@ -910,8 +722,8 @@ export const options = {
       initTheme();
       initPosts(); // async: fetches posts.json, then renders tags + articles
 
-      // Click outside modals to close
-      ['read-modal', 'post-modal'].forEach(mId => {
+      // Click outside modal to close
+      ['read-modal'].forEach(mId => {
         const el = document.getElementById(mId);
         if (el) {
           el.addEventListener('click', (e) => {

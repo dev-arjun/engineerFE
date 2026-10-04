@@ -49,13 +49,15 @@ wipes it and rebuilds from scratch.
    the homepage card's read modal.
 4. Rebuild with `python3 build.py docs`, commit, push.
 
-Or use the **+ button** on the live homepage: it creates the `posts/*.md`
-file straight in this repo via the GitHub API. It asks for a fine-grained
-personal access token once per browser session (kept in sessionStorage,
-never in the repo). Create it at GitHub → Settings → Developer settings →
-Personal access tokens → Fine-grained: repository access = only this repo,
-Contents = Read and write. Note: the button saves the file; the live site
-updates after `docs/` is rebuilt and pushed (step 4 above).
+Or use the private **admin page** at `/admin.html` (not linked from the
+blog, hidden from search engines): it creates the `posts/*.md` file straight
+in this repo via the GitHub API. It asks for a fine-grained personal access
+token once per browser session (kept in sessionStorage, never in the repo).
+Create it at GitHub → Settings → Developer settings → Personal access tokens
+→ Fine-grained: repository access = only this repo, Contents = Read and write.
+Only someone holding that token can publish, which is just you. Note: the
+page saves the file; the live site updates after `docs/` is rebuilt and
+pushed (step 4 above).
 
 ## GitHub Pages setup
 
