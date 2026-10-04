@@ -9,8 +9,7 @@ No dependencies, just Python 3. Run from this folder:
 
 Reads posts/*.md and about.md, writes the finished site to the output folder.
 landing.html is copied as-is to become the homepage (index.html); the post
-listing is written to blog.html. admin.html (the private, unlisted post editor)
-is copied as-is to admin.html. Also writes posts.json, the machine-readable
+listing is written to blog.html. Also writes posts.json, the machine-readable
 feed the homepage (landing.html) renders its article cards from.
 Supported front matter keys: title, date (YYYY-MM-DD), tags (comma-separated),
 description, readtime, placeholder.
@@ -412,12 +411,6 @@ def main():
     if not landing.exists():
         raise SystemExit("Error: landing.html is missing. It is the site's homepage.")
     shutil.copy(landing, out / "index.html")
-
-    # Admin page: private post editor, copied as-is. Not linked from the
-    # site and marked noindex so only the owner uses it.
-    admin = ROOT / "admin.html"
-    if admin.exists():
-        shutil.copy(admin, out / "admin.html")
 
     # Blog page: newest posts first.
     items = []
