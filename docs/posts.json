@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, world",
+    "date": "2026-10-04",
+    "readTime": "5 min read",
+    "tags": [],
+    "summary": "Placeholder first post. Arjun will replace this with his first real post.",
+    "code": "print(\"Hello from Playwright\")\npage.goto(\"https://example.com\")"
+  }
+]

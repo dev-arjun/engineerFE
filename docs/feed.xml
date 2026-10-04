@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>Becoming an Engineer</title>
+<link>https://becominganengineer.in/</link>
+<description>A performance tester learning in public, on the road to becoming an SDET.</description>
+<language>en</language>
+<item>
+<title>Hello, world</title>
+<link>https://becominganengineer.in/posts/hello-world.html</link>
+<guid>https://becominganengineer.in/posts/hello-world.html</guid>
+<pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+<description>Placeholder first post. Arjun will replace this with his first real post.</description>
+</item>
+</channel>
+</rss>

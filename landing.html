@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>becominganengineer.in | SDET, Automated Testing & Quality Engineering</title>
+  <meta name="title" content="becominganengineer.in | SDET, Automated Testing & Quality Engineering">
+  <meta name="description" content="Practical SDET study notes, test automation architectures, Playwright & Cypress tips, performance testing, and CI/CD quality pipelines documented in public by Nagarjun.">
+  <meta name="keywords" content="becominganengineer, nagxrjun, SDET, Software Development Engineer in Test, Playwright, Cypress, Test Automation, API Testing, Performance Testing, QA Engineering, CI CD Testing, Selenium">
+  <meta name="author" content="Nagarjun (@nagxrjun)">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://becominganengineer.in/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://becominganengineer.in/">
+  <meta property="og:title" content="becominganengineer.in | SDET & Automated Testing Journey">
+  <meta property="og:description" content="Real-world SDET patterns, test framework blueprints, and automation lessons learned in public by @nagxrjun.">
+  <meta property="og:image" content="https://placehold.co/1200x630/0f172a/10b981?text=becominganengineer.in">
+
+  <!-- Twitter Meta Tags -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="becominganengineer.in | SDET & Automated Testing Journey">
+  <meta property="twitter:description" content="Real-world SDET patterns, test framework blueprints, and automation lessons learned in public by @nagxrjun.">
+  <meta property="twitter:image" content="https://placehold.co/1200x630/0f172a/10b981?text=becominganengineer.in">
+
+  <!-- Structured Data JSON-LD for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "becominganengineer.in",
+    "url": "https://becominganengineer.in/",
+    "description": "Practical insights and technical blueprints on SDET, test automation, Playwright, Cypress, and quality engineering.",
+    "publisher": {
+      "@type": "Person",
+      "name": "Nagarjun",
+      "url": "https://becominganengineer.in/",
+      "sameAs": [
+        "https://instagram.com/nagxrjun"
+      ]
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              emerald: '#10B981',
+              dark: '#0B0F19',
+              darker: '#06080F',
+              cardDark: '#111726',
+              borderDark: '#1E293B',
+              cardLight: '#FFFFFF',
+              borderLight: '#E2E8F0'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #47556940;
+      border-radius: 9999px;
+    }
+    .dark .glass-header {
+      background: rgba(11, 15, 25, 0.85);
+      border-color: rgba(30, 41, 59, 0.7);
+    }
+    .glass-header {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(226, 232, 240, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#06080F] text-slate-800 dark:text-slate-200 min-h-screen flex flex-col justify-between selection:bg-emerald-500/20 selection:text-emerald-500 custom-scrollbar">
+
+  <header class="sticky top-0 z-40 border-b glass-header transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand / Logo -->
+        <a href="#" class="flex items-center gap-3 group" aria-label="becominganengineer.in Homepage">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-500 p-[2px] transition duration-300 group-hover:scale-105 shadow-md shadow-emerald-500/10">
+            <div class="w-full h-full bg-white dark:bg-brand-darker rounded-[10px] flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-500"></i>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">becominganengineer<span class="text-emerald-500">.in</span></span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Software Development Engineer in Test</p>
+          </div>
+        </a>
+
+        <!-- Desktop Quick Links & Actions -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          
+          <!-- Instagram Handle Button -->
+          <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-pink-600 dark:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-950/30 transition border border-pink-200 dark:border-pink-900/40">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+            <span>@nagxrjun</span>
+          </a>
+
+          <!-- Add Post Button -->
+          <button onclick="openNewPostModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Add Post</span>
+          </button>
+
+          <!-- Light / Dark Mode Toggle -->
+          <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition" aria-label="Toggle theme">
+            <i data-lucide="sun" id="theme-icon-light" class="w-4 h-4 hidden"></i>
+            <i data-lucide="moon" id="theme-icon-dark" class="w-4 h-4"></i>
+          </button>
+
+          <!-- About Anchor -->
+          <a href="#author" class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 px-2 py-1.5 transition">
+            About
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <section class="pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-slate-200 dark:border-brand-borderDark/60">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-xs font-mono mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Automated Testing &bull; Framework Architecture &bull; CI Quality</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+          Learning <span class="text-emerald-500">SDET</span> &amp; Test Automation in Public
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-6">
+          Real study logs, debugging journals, and reproducible patterns for Playwright, Cypress, API test suites, Docker test harnesses, and CI/CD pipelines.
+        </p>
+
+        <!-- Search Bar with Live Counting -->
+        <div class="max-w-xl mx-auto relative mb-6">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input 
+            type="text" 
+            id="search-input" 
+            oninput="handleSearch(this.value)"
+            placeholder="Search Playwright, Mocking, Flakiness, API, Tags..." 
+            class="w-full pl-11 pr-24 py-3 rounded-xl bg-white dark:bg-brand-cardDark border border-slate-300 dark:border-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          <button 
+            onclick="clearSearch()" 
+            id="clear-search-btn" 
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 text-[11px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded hover:text-slate-900 dark:hover:text-white transition">
+            Clear
+          </button>
+        </div>
+
+        <!-- Tag Categories Filter (Dynamically computed from posts) -->
+        <div class="flex items-center justify-center gap-1.5 flex-wrap" id="tags-bar">
+          <!-- Populated dynamically based on post tags -->
+        </div>
+      </div>
+    </section>
+
+    <section class="py-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Articles &amp; Test Logs</h2>
+          <span id="post-counter" class="text-xs font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">0 posts</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Click any card to read full code</span>
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Generated dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="no-results" class="hidden text-center py-16">
+        <div class="w-14 h-14 mx-auto mb-3 rounded-xl bg-slate-200 dark:bg-slate-800/80 flex items-center justify-center text-slate-400">
+          <i data-lucide="filter-x" class="w-7 h-7"></i>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">No articles found</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">No notes match your active tag filter or search query.</p>
+        <button onclick="resetAllFilters()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition">
+          Reset Filter to All
+        </button>
+      </div>
+    </section>
+
+    <section id="author" class="py-12 bg-slate-100 dark:bg-slate-950/60 border-t border-slate-200 dark:border-brand-borderDark">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 shadow-sm">
+          
+          <!-- Avatar -->
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 p-[2px] flex-shrink-0">
+            <div class="w-full h-full rounded-[14px] bg-slate-50 dark:bg-brand-dark flex items-center justify-center text-3xl">
+              🧪
+            </div>
+          </div>
+
+          <!-- Bio -->
+          <div class="flex-grow text-center sm:text-left">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Nagarjun</h3>
+                <p class="text-xs font-mono text-emerald-600 dark:text-emerald-400">becominganengineer.in &bull; SDET Journey</p>
+              </div>
+
+              <!-- Instagram pill button -->
+              <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-90 shadow-sm transition">
+                <i data-lucide="instagram" class="w-4 h-4"></i>
+                <span>Follow @nagxrjun</span>
+              </a>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              I document real SDET learning logs, test framework architectures, flakiness resolutions, and automation blueprints in public. Follow along on Instagram for quick code reels and carousel summaries!
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-slate-500 dark:text-slate-400">
+              <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 flex items-center gap-1 transition">
+                <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @nagxrjun
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition">
+                <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Repos
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 flex items-center gap-1 transition">
+                <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-brand-borderDark bg-white dark:bg-brand-darker py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-800 dark:text-white">becominganengineer.in</span>
+        <span>&bull;</span>
+        <span>Curated by Nagarjun</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 transition flex items-center gap-1">
+          <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @nagxrjun
+        </a>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-emerald-500 transition">
+          Back to Top &uarr;
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <div id="read-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full max-h-[88vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative shadow-2xl">
+      <button onclick="closeReadModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Close modal">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="modal-content" class="space-y-4">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <div id="post-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 relative shadow-2xl">
+      <button onclick="closeNewPostModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Close modal">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+          +
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Publish New SDET Post</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Add content and tags; category tabs will update automatically!</p>
+        </div>
+      </div>
+
+      <form onsubmit="handleCreatePost(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Post Title</label>
+          <input type="text" id="new-title" required placeholder="e.g. Solving StaleElement Exceptions in Playwright Dynamic Tables" 
+                 class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Read Time</label>
+            <input type="text" id="new-readtime" placeholder="e.g. 5 min read" value="5 min read"
+                   class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tags (Comma-separated)</label>
+            <input type="text" id="new-tags" required placeholder="Playwright, Locators, Flakiness" 
+                   class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Short Summary</label>
+          <textarea id="new-summary" rows="2" required placeholder="Brief description of the problem, fix, or concept learned..." 
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Code Snippet / Test Blueprint</label>
+          <textarea id="new-code" rows="4" placeholder="// Paste your test script or locator snippet here..." 
+                    class="w-full font-mono text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-brand-darker border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-200 dark:border-slate-800">
+          <button type="button" onclick="closeNewPostModal()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm">
+            Publish to Blog
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 dark:bg-slate-800 border border-emerald-500/40 text-white text-xs shadow-2xl">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-message">Notification</span>
+  </div>
+
+  <script>
+    // Initial SDET-Focused Blog Posts Seed
+    const initialPosts = [
+      {
+        id: 1,
+        title: "Flakiness In Playwright: Why getByRole Beats XPath & CSS Selectors",
+        tags: ["Playwright", "Locators", "Best-Practices", "E2E"],
+        readTime: "6 min read",
+        date: "2026-03-24",
+        summary: "I spent hours debugging intermittent CI failures caused by fragile class-based locators. Here is why switching to accessibility-first role locators reduced test flakiness to zero.",
+        code: `// Flaky: dependent on CSS styling class
+// await page.locator('.btn-primary.checkout-v2').click();
+
+// Resilient: waits for ARIA accessibility tree readiness
+await page.getByRole('button', { name: /complete payment/i }).click({
+  timeout: 5000
+});`
+      },
+      {
+        id: 2,
+        title: "Mocking Network Payloads with Playwright Route Interception",
+        tags: ["Playwright", "Mocking", "API-Testing"],
+        readTime: "7 min read",
+        date: "2026-03-18",
+        summary: "Testing edge cases like HTTP 500s or slow payment gateways shouldn't rely on unstable backend microservices. Here is how I stub network responses in local automated tests.",
+        code: `await page.route('**/api/v1/checkout', async (route) => {
+  // Simulate synthetic 503 Service Unavailable
+  await route.fulfill({
+    status: 503,
+    contentType: 'application/json',
+    body: JSON.stringify({ error: "Payment processor timeout" })
+  });
+});`
+      },
+      {
+        id: 3,
+        title: "Contract Testing with Pact: Stopping Breaking Microservice Changes",
+        tags: ["Contract-Testing", "Pact", "API-Testing", "CI-CD"],
+        readTime: "9 min read",
+        date: "2026-03-10",
+        summary: "Our staging tests kept breaking whenever backend changed JSON key names. I learned how to set up Consumer-Driven Contracts using Pact in GitHub Actions.",
+        code: `// Consumer test definition
+await pact.addInteraction({
+  state: 'order #101 exists',
+  uponReceiving: 'a request for order 101',
+  withRequest: { method: 'GET', path: '/orders/101' },
+  willRespondWith: {
+    status: 200,
+    body: { orderId: Matchers.string("101"), totalAmount: Matchers.decimal(49.99) }
+  }
+});`
+      },
+      {
+        id: 4,
+        title: "Running Parallel Tests in Docker Containers without Port Clashes",
+        tags: ["Docker", "CI-CD", "Infrastructure"],
+        readTime: "8 min read",
+        date: "2026-02-28",
+        summary: "My local test suite took 22 minutes sequentially. By containerizing browsers and spinning up isolated test environments with dynamic port allocation, suite time dropped to 3 minutes.",
+        code: `# Docker compose test runner excerpt
+services:
+  sdet-runner:
+    image: mcr.microsoft.com/playwright:v1.49.0-jammy
+    ipc: host
+    shm_size: '2gb'
+    command: npx playwright test --workers=4`
+      },
+      {
+        id: 5,
+        title: "Distributed Load Testing with k6: Measuring p99 Latency Spikes",
+        tags: ["Performance", "k6", "Load-Testing"],
+        readTime: "8 min read",
+        date: "2026-02-15",
+        summary: "Average response time hides catastrophic user slowdowns. In this study note, I built a ramp-up k6 load script to track 99th percentile latencies and database pool saturation.",
+        code: `import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export const options = {
+  stages: [
+    { duration: '30s', target: 50 },
+    { duration: '1m', target: 200 },
+    { duration: '30s', target: 0 }
+  ],
+  thresholds: {
+    http_req_duration: ['p(99)<400'] // 99% of requests must finish below 400ms
+  }
+};`
+      },
+      {
+        id: 6,
+        title: "Mutation Testing with Stryker: Are Your Tests Actually Asserting Anything?",
+        tags: ["Mutation-Testing", "Quality-Engineering", "Best-Practices"],
+        readTime: "6 min read",
+        date: "2026-01-28",
+        summary: "100% line coverage can be completely useless if assertions are weak. I used mutation testing to inject subtle bugs into our auth handler to check if our tests would catch them.",
+        code: `// Original logic: if (user.isActive && user.hasCredits)
+// Stryker mutant: if (user.isActive || user.hasCredits)
+// Result: Killed (Test suite successfully failed on mutated logic)`
+      }
+    ];
+
+    // State Variables
+    let posts = [];
+    let activeTag = 'ALL';
+    let searchQuery = '';
+
+    // Load posts from posts.json (generated at build time from posts/*.md).
+    // Falls back to the built-in seed list if posts.json is missing,
+    // e.g. when previewing the page locally without a build.
+    async function initPosts() {
+      try {
+        const res = await fetch('posts.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('no posts.json');
+        posts = await res.json();
+      } catch (e) {
+        posts = initialPosts.map(p => ({ ...p, slug: 'seed-' + p.id }));
+      }
+      renderTagsBar();
+      renderArticles();
+    }
+
+    // Dynamic Tag extraction: Recomputes categories from current posts list
+    function renderTagsBar() {
+      const tagsContainer = document.getElementById('tags-bar');
+      const allTagsMap = {};
+
+      posts.forEach(p => {
+        (p.tags || []).forEach(t => {
+          const clean = t.trim();
+          if (clean) allTagsMap[clean] = (allTagsMap[clean] || 0) + 1;
+        });
+      });
+
+      const uniqueTags = Object.keys(allTagsMap).sort();
+      
+      let html = `
+        <button onclick="selectTag('ALL')" class="tag-pill px-3 py-1 rounded-full text-xs font-semibold transition ${
+          activeTag === 'ALL'
+            ? 'bg-emerald-600 text-white shadow-sm'
+            : 'bg-white dark:bg-brand-cardDark text-slate-600 dark:text-slate-400 hover:text-emerald-500 border border-slate-200 dark:border-slate-800'
+        }">
+          #All (${posts.length})
+        </button>
+      `;
+
+      uniqueTags.forEach(tag => {
+        const isSelected = activeTag.toLowerCase() === tag.toLowerCase();
+        html += `
+          <button onclick="selectTag('${tag}')" class="tag-pill px-3 py-1 rounded-full text-xs font-semibold transition ${
+            isSelected 
+              ? 'bg-emerald-600 text-white shadow-sm' 
+              : 'bg-white dark:bg-brand-cardDark text-slate-600 dark:text-slate-400 hover:text-emerald-500 border border-slate-200 dark:border-slate-800'
+          }">
+            #${tag} <span class="opacity-60 text-[10px]">(${allTagsMap[tag]})</span>
+          </button>
+        `;
+      });
+
+      tagsContainer.innerHTML = html;
+    }
+
+    function selectTag(tag) {
+      activeTag = tag;
+      renderTagsBar();
+      renderArticles();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val;
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (val.trim()) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderArticles();
+    }
+
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      handleSearch('');
+    }
+
+    function resetAllFilters() {
+      activeTag = 'ALL';
+      clearSearch();
+      renderTagsBar();
+      renderArticles();
+    }
+
+    function renderArticles() {
+      const container = document.getElementById('articles-container');
+      const counter = document.getElementById('post-counter');
+      const noResults = document.getElementById('no-results');
+
+      const filtered = posts.filter(post => {
+        // Tag match
+        const matchesTag = activeTag === 'ALL' || 
+          (post.tags && post.tags.some(t => t.toLowerCase() === activeTag.toLowerCase()));
+
+        // Search match
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q || 
+          post.title.toLowerCase().includes(q) ||
+          post.summary.toLowerCase().includes(q) ||
+          (post.tags && post.tags.some(t => t.toLowerCase().includes(q)));
+
+        return matchesTag && matchesSearch;
+      });
+
+      counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'post' : 'posts'}`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+
+      noResults.classList.add('hidden');
+
+      container.innerHTML = filtered.map(post => {
+        return `
+          <article onclick="openReadModal('${post.slug}')" 
+                   class="group cursor-pointer rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-emerald-950/20 relative">
+            <div>
+              <!-- Meta Header -->
+              <div class="flex items-center justify-between gap-2 mb-3 text-xs text-slate-500 dark:text-slate-400">
+                <span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                  <i data-lucide="calendar" class="w-3 h-3"></i>
+                  ${post.date}
+                </span>
+                <span class="flex items-center gap-1">
+                  <i data-lucide="clock" class="w-3 h-3"></i>
+                  ${post.readTime}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition leading-snug mb-2">
+                ${escapeHtml(post.title)}
+              </h3>
+
+              <!-- Summary -->
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3">
+                ${escapeHtml(post.summary)}
+              </p>
+            </div>
+
+            <!-- Tags & Footer -->
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80">
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                ${(post.tags || []).map(tag => `
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800">
+                    #${escapeHtml(tag)}
+                  </span>
+                `).join('')}
+              </div>
+
+              <div class="flex items-center justify-between text-xs text-emerald-600 dark:text-emerald-400 font-semibold group-hover:translate-x-0.5 transition">
+                <span>View Full Test Notes</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Modal Handling for Reading
+    function openReadModal(slug) {
+      const post = posts.find(p => p.slug === slug);
+      if (!post) return;
+
+      const modal = document.getElementById('read-modal');
+      const content = document.getElementById('modal-content');
+
+      content.innerHTML = `
+        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono font-bold">${post.date}</span>
+          <span>&bull;</span>
+          <span>${post.readTime}</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white leading-tight">
+          ${escapeHtml(post.title)}
+        </h2>
+
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          ${escapeHtml(post.summary)}
+        </p>
+
+        ${post.code ? `
+          <div class="mt-4 rounded-xl bg-slate-900 border border-slate-800 p-4 font-mono text-xs text-emerald-400 overflow-x-auto shadow-inner">
+            <div class="text-[10px] text-slate-500 pb-2 mb-2 border-b border-slate-800 flex justify-between">
+              <span>Code / Test Assertion Snippet</span>
+              <span>SDET Log</span>
+            </div>
+            <pre><code>${escapeHtml(post.code)}</code></pre>
+          </div>
+        ` : ''}
+
+        <div class="flex flex-wrap gap-1.5 pt-3">
+          ${(post.tags || []).map(t => `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">#${escapeHtml(t)}</span>`).join('')}
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+          <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" class="text-xs text-pink-600 dark:text-pink-400 hover:underline flex items-center gap-1 font-semibold">
+            <i data-lucide="instagram" class="w-3.5 h-3.5"></i> Follow @nagxrjun
+          </a>
+
+          <div class="flex items-center gap-2">
+            <button onclick="copyPostLink('${post.slug}')" class="px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-800 dark:text-slate-200 transition flex items-center gap-1.5">
+              <i data-lucide="share-2" class="w-3.5 h-3.5"></i> Copy Link
+            </button>
+            <button onclick="closeReadModal()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">
+              Done
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeReadModal() {
+      const modal = document.getElementById('read-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Modal Handling for Adding New Post
+    function openNewPostModal() {
+      const modal = document.getElementById('post-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeNewPostModal() {
+      const modal = document.getElementById('post-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Publish straight to GitHub: creates posts/<slug>.md in the
+    // dev-arjun/engineerFE repo via the GitHub Contents API.
+    // Needs a fine-grained personal access token (Contents: read + write
+    // on this repo); asked once per browser session and kept only in
+    // sessionStorage, never in the repo.
+    // Note: this saves the Markdown file. The live site refreshes after
+    // docs/ is rebuilt (python3 build.py docs) and pushed.
+    const GH_OWNER = 'dev-arjun';
+    const GH_REPO = 'engineerFE';
+    const GH_BRANCH = 'main';
+
+    function ghSlugify(title) {
+      const s = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+      return s || ('post-' + Date.now());
+    }
+
+    function ghBase64(str) {
+      const bytes = new TextEncoder().encode(str);
+      let bin = '';
+      for (const b of bytes) bin += String.fromCharCode(b);
+      return btoa(bin);
+    }
+
+    function fmEscape(s) {
+      return String(s).replace(/\\/g, '\\\\').replace(/"/g, "'");
+    }
+
+    async function handleCreatePost(e) {
+      e.preventDefault();
+      const title = document.getElementById('new-title').value.trim();
+      const readTime = document.getElementById('new-readtime').value.trim() || '5 min read';
+      const rawTags = document.getElementById('new-tags').value.trim();
+      const summary = document.getElementById('new-summary').value.trim();
+      const code = document.getElementById('new-code').value.trim();
+
+      if (!title || !rawTags || !summary) return;
+
+      const parsedTags = rawTags
+        .split(',')
+        .map(t => t.trim().replace(/^#/, ''))
+        .filter(t => t.length > 0);
+
+      let ghToken = sessionStorage.getItem('sdet_gh_token');
+      if (!ghToken) {
+        ghToken = prompt('Enter your GitHub token to publish (kept only in this browser session):');
+        if (!ghToken) return;
+        ghToken = ghToken.trim();
+        sessionStorage.setItem('sdet_gh_token', ghToken);
+      }
+
+      const slug = ghSlugify(title);
+      const date = new Date().toISOString().split('T')[0];
+      const md =
+        '---\n' +
+        'title: "' + fmEscape(title) + '"\n' +
+        'date: ' + date + '\n' +
+        (parsedTags.length ? 'tags: "' + fmEscape(parsedTags.join(', ')) + '"\n' : '') +
+        'description: "' + fmEscape(summary) + '"\n' +
+        'readtime: "' + fmEscape(readTime) + '"\n' +
+        '---\n\n' +
+        summary + '\n' +
+        (code ? '\n```\n' + code.replace(/```/g, "'''") + '\n```\n' : '');
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Publishing...';
+
+      const headers = {
+        'Authorization': 'Bearer ' + ghToken,
+        'Accept': 'application/vnd.github+json'
+      };
+      const url = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/posts/' + slug + '.md';
+
+      try {
+        const existing = await fetch(url, { headers });
+        if (existing.status === 200) throw new Error('A post with this title already exists.');
+        if (existing.status === 401) {
+          sessionStorage.removeItem('sdet_gh_token');
+          throw new Error('Token rejected by GitHub. Try again.');
+        }
+        if (existing.status !== 404) throw new Error('Could not reach GitHub (HTTP ' + existing.status + ').');
+
+        const put = await fetch(url, {
+          method: 'PUT',
+          headers: Object.assign({}, headers, { 'Content-Type': 'application/json' }),
+          body: JSON.stringify({
+            message: 'Add post: ' + title,
+            content: ghBase64(md),
+            branch: GH_BRANCH
+          })
+        });
+        if (put.status === 401) {
+          sessionStorage.removeItem('sdet_gh_token');
+          throw new Error('Token rejected by GitHub. Try again.');
+        }
+        if (!put.ok) throw new Error('GitHub refused the file (HTTP ' + put.status + ').');
+
+        e.target.reset();
+        closeNewPostModal();
+        showToast('Saved to GitHub! It goes live after the next site rebuild.');
+      } catch (err) {
+        showToast('Publish failed: ' + err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    }
+
+    function copyPostLink(slug) {
+      const url = window.location.origin + window.location.pathname + '#post-' + encodeURIComponent(slug);
+      const temp = document.createElement('input');
+      temp.value = url;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+        showToast('Link copied to clipboard!');
+      } catch (err) {
+        showToast('Could not copy link');
+      }
+      document.body.removeChild(temp);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = msg;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    // Light / Dark Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('sdet_theme', 'light');
+        updateThemeIcons('light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('sdet_theme', 'dark');
+        updateThemeIcons('dark');
+      }
+    }
+
+    function updateThemeIcons(mode) {
+      const lightIcon = document.getElementById('theme-icon-light');
+      const darkIcon = document.getElementById('theme-icon-dark');
+      if (mode === 'dark') {
+        lightIcon.classList.add('hidden');
+        darkIcon.classList.remove('hidden');
+      } else {
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+      }
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem('sdet_theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('dark');
+        updateThemeIcons('light');
+      } else {
+        document.documentElement.classList.add('dark');
+        updateThemeIcons('dark');
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Lifecycle
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      initPosts(); // async: fetches posts.json, then renders tags + articles
+
+      // Click outside modals to close
+      ['read-modal', 'post-modal'].forEach(mId => {
+        const el = document.getElementById(mId);
+        if (el) {
+          el.addEventListener('click', (e) => {
+            if (e.target === el) {
+              el.classList.add('hidden');
+              el.classList.remove('flex');
+            }
+          });
+        }
+      });
+
+      // Escape key to dismiss modals
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeReadModal();
+          closeNewPostModal();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
