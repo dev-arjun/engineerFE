@@ -285,23 +285,6 @@
     </div>
   </footer>
 
-  <div id="read-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full max-h-[88vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative shadow-2xl">
-      <button onclick="closeReadModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Close modal">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div id="modal-content" class="space-y-4">
-        <!-- Rendered via JS -->
-      </div>
-    </div>
-  </div>
-
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 dark:bg-slate-800 border border-emerald-500/40 text-white text-xs shadow-2xl">
-    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-    <span id="toast-message">Notification</span>
-  </div>
-
   <script>
     // Initial SDET-Focused Blog Posts Seed
     const initialPosts = [
@@ -524,8 +507,8 @@ export const options = {
 
       container.innerHTML = filtered.map(post => {
         return `
-          <article onclick="openReadModal('${post.slug}')" 
-                   class="group cursor-pointer rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-emerald-950/20 relative">
+          <a href="posts/${post.slug}.html"
+             class="group cursor-pointer block rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-emerald-950/20 relative">
             <div>
               <!-- Meta Header -->
               <div class="flex items-center justify-between gap-2 mb-3 text-xs text-slate-500 dark:text-slate-400">
@@ -561,108 +544,15 @@ export const options = {
               </div>
 
               <div class="flex items-center justify-between text-xs text-emerald-600 dark:text-emerald-400 font-semibold group-hover:translate-x-0.5 transition">
-                <span>View Full Test Notes</span>
+                <span>Read Full Post</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </div>
             </div>
-          </article>
+          </a>
         `;
       }).join('');
 
       if (window.lucide) lucide.createIcons();
-    }
-
-    // Modal Handling for Reading
-    function openReadModal(slug) {
-      const post = posts.find(p => p.slug === slug);
-      if (!post) return;
-
-      const modal = document.getElementById('read-modal');
-      const content = document.getElementById('modal-content');
-
-      content.innerHTML = `
-        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-          <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono font-bold">${post.date}</span>
-          <span>&bull;</span>
-          <span>${post.readTime}</span>
-        </div>
-
-        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white leading-tight">
-          ${escapeHtml(post.title)}
-        </h2>
-
-        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          ${escapeHtml(post.summary)}
-        </p>
-
-        ${post.code ? `
-          <div class="mt-4 rounded-xl bg-slate-900 border border-slate-800 p-4 font-mono text-xs text-emerald-400 overflow-x-auto shadow-inner">
-            <div class="text-[10px] text-slate-500 pb-2 mb-2 border-b border-slate-800 flex justify-between">
-              <span>Code / Test Assertion Snippet</span>
-              <span>SDET Log</span>
-            </div>
-            <pre><code>${escapeHtml(post.code)}</code></pre>
-          </div>
-        ` : ''}
-
-        <div class="flex flex-wrap gap-1.5 pt-3">
-          ${(post.tags || []).map(t => `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">#${escapeHtml(t)}</span>`).join('')}
-        </div>
-
-        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
-          <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" class="text-xs text-pink-600 dark:text-pink-400 hover:underline flex items-center gap-1 font-semibold">
-            <i data-lucide="instagram" class="w-3.5 h-3.5"></i> Follow @nagxrjun
-          </a>
-
-          <div class="flex items-center gap-2">
-            <button onclick="copyPostLink('${post.slug}')" class="px-3.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-800 dark:text-slate-200 transition flex items-center gap-1.5">
-              <i data-lucide="share-2" class="w-3.5 h-3.5"></i> Copy Link
-            </button>
-            <button onclick="closeReadModal()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">
-              Done
-            </button>
-          </div>
-        </div>
-      `;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function closeReadModal() {
-      const modal = document.getElementById('read-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function copyPostLink(slug) {
-      const url = window.location.origin + window.location.pathname + '#post-' + encodeURIComponent(slug);
-      const temp = document.createElement('input');
-      temp.value = url;
-      document.body.appendChild(temp);
-      temp.select();
-      try {
-        document.execCommand('copy');
-        showToast('Link copied to clipboard!');
-      } catch (err) {
-        showToast('Could not copy link');
-      }
-      document.body.removeChild(temp);
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-message');
-      toastMsg.textContent = msg;
-
-      toast.classList.remove('translate-y-24', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-
-      setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-24', 'opacity-0');
-      }, 3000);
     }
 
     // Light / Dark Theme Toggle
@@ -717,26 +607,6 @@ export const options = {
       initTheme();
       initPosts(); // async: fetches posts.json, then renders tags + articles
 
-      // Click outside modal to close
-      ['read-modal'].forEach(mId => {
-        const el = document.getElementById(mId);
-        if (el) {
-          el.addEventListener('click', (e) => {
-            if (e.target === el) {
-              el.classList.add('hidden');
-              el.classList.remove('flex');
-            }
-          });
-        }
-      });
-
-      // Escape key to dismiss modals
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeReadModal();
-          closeNewPostModal();
-        }
-      });
     });
   </script>
 </body>

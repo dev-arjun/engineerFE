@@ -273,37 +273,94 @@ def first_code_block(body):
     return m.group(1).rstrip("\n") if m else ""
 
 
-def base(title, body, description="", prefix=""):
+def base(title, body, description="", prefix="", canonical_path="", article_date=""):
+    """Page shell in the site's Tailwind dark theme.
+
+    canonical_path like "posts/my-post.html" ("" = homepage).
+    article_date "YYYY-MM-DD" marks the page as an article for OG/JSON-LD.
+    """
     desc = html.escape(description or SITE_TAGLINE, quote=True)
+    t = html.escape(title)
+    canon = f"{SITE_URL}/{canonical_path}" if canonical_path else SITE_URL + "/"
+    og_type = "article" if article_date else "website"
+    ld = ""
+    if article_date:
+        ld = (
+            '\n  <script type="application/ld+json">\n  {\n'
+            f'    "@context": "https://schema.org",\n'
+            f'    "@type": "BlogPosting",\n'
+            f'    "headline": {json.dumps(title)},\n'
+            f'    "description": {json.dumps(description or SITE_TAGLINE)},\n'
+            f'    "datePublished": "{article_date}",\n'
+            f'    "author": {{"@type": "Person", "name": "{AUTHOR}", "url": "{SITE_URL}/"}},\n'
+            f'    "mainEntityOfPage": "{canon}"\n'
+            '  }\n  </script>'
+        )
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)} | {SITE_TITLE}</title>
+<title>{t} | {SITE_TITLE}</title>
 <meta name="description" content="{desc}">
-<link rel="stylesheet" href="{prefix}style.css">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{canon}">
+<meta property="og:type" content="{og_type}">
+<meta property="og:url" content="{canon}">
+<meta property="og:title" content="{t} | {SITE_TITLE}">
+<meta property="og:description" content="{desc}">
+<meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE} - RSS feed" href="{prefix}feed.xml">
 <link rel="icon" href="{FAVICON}">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {{ darkMode: 'class', theme: {{ extend: {{ fontFamily: {{ sans: ['"Plus Jakarta Sans"', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] }} }} }} }};
+</script>
+<style>
+body {{ font-family: 'Plus Jakarta Sans', sans-serif; }}
+.post-body h1 {{ font-size: 1.875rem; font-weight: 800; color: #fff; margin: 1.75rem 0 0.75rem; letter-spacing: -0.01em; }}
+.post-body h2 {{ font-size: 1.5rem; font-weight: 700; color: #fff; margin: 1.5rem 0 0.6rem; }}
+.post-body h3 {{ font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin: 1.25rem 0 0.5rem; }}
+.post-body p {{ margin: 0.9rem 0; line-height: 1.8; color: #cbd5e1; }}
+.post-body a {{ color: #34d399; }}
+.post-body a:hover {{ text-decoration: underline; }}
+.post-body ul {{ list-style: disc; margin: 0.9rem 0; padding-left: 1.5rem; }}
+.post-body ol {{ list-style: decimal; margin: 0.9rem 0; padding-left: 1.5rem; }}
+.post-body li {{ margin: 0.35rem 0; color: #cbd5e1; line-height: 1.7; }}
+.post-body blockquote {{ border-left: 3px solid #10b981; padding: 0.25rem 0 0.25rem 1rem; color: #94a3b8; margin: 1.1rem 0; }}
+.post-body pre {{ background: #0b1120; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1rem; overflow-x: auto; margin: 1.1rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.6; color: #a7f3d0; }}
+.post-body p code, .post-body li code, .post-body h1 code, .post-body h2 code, .post-body h3 code {{ font-family: 'JetBrains Mono', monospace; background: #1e293b; padding: 0.15rem 0.4rem; border-radius: 0.375rem; font-size: 0.85em; color: #6ee7b7; }}
+.post-body img {{ border-radius: 0.75rem; margin: 1.1rem 0; }}
+.post-body hr {{ border-color: #1e293b; margin: 1.75rem 0; }}
+</style>{ld}
 </head>
-<body>
-<header class="site">
-<div class="wrap">
-<a class="site-title" href="{prefix}index.html">{SITE_TITLE}</a>
-<nav>
-<a href="{prefix}index.html">Home</a>
-<a href="{prefix}blog.html">Blog</a>
-<a href="{prefix}about.html">About</a>
-<a href="{prefix}feed.xml">RSS</a>
+<body class="bg-[#06080F] text-slate-200 min-h-screen flex flex-col">
+<header class="sticky top-0 z-40 border-b border-slate-800/70" style="background: rgba(11,15,25,.85); backdrop-filter: blur(12px);">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<a href="{prefix}index.html" class="flex items-center gap-2.5">
+<span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-500 flex items-center justify-center text-white font-extrabold text-lg">B</span>
+<span class="font-extrabold tracking-tight text-white">becominganengineer<span class="text-emerald-500">.in</span></span>
+</a>
+<nav class="flex items-center gap-5 text-sm">
+<a href="{prefix}blog.html" class="text-slate-400 hover:text-emerald-400 transition">Blog</a>
+<a href="{prefix}index.html#author" class="text-slate-400 hover:text-emerald-400 transition">About</a>
 </nav>
 </div>
+</div>
 </header>
-<main class="wrap">
+<main class="flex-grow w-full max-w-3xl mx-auto px-4 sm:px-6 py-10">
 {body}
 </main>
-<footer class="site">
-<div class="wrap">
-<p>&copy; 2026 {AUTHOR}. Built by hand, hosted for free.</p>
+<footer class="border-t border-slate-800/70 py-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+<div class="flex items-center gap-2">
+<span class="font-bold text-white">becominganengineer.in</span><span>&bull;</span><span>Curated by {AUTHOR}</span>
+</div>
+<a href="{prefix}index.html" class="hover:text-emerald-400 transition">Back to home</a>
 </div>
 </footer>
 </body>
@@ -365,50 +422,70 @@ def main():
     # Blog page: newest posts first.
     items = []
     for p in posts:
-        badge = ' <span class="badge">Placeholder</span>' if p["placeholder"] else ""
+        badge = ' <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/30">Placeholder</span>' if p["placeholder"] else ""
         items.append(
-            "<article>\n"
-            f"<h2><a href=\"posts/{p['slug']}.html\">{html.escape(p['title'])}</a>{badge}</h2>\n"
-            f"<time datetime=\"{p['date_str']}\">{p['date_human']}</time>\n"
-            f"<p>{html.escape(p['excerpt'])}</p>\n"
+            '<article class="rounded-2xl bg-[#111726] border border-slate-800 p-6 hover:border-emerald-500/40 transition">\n'
+            f'<h2 class="text-xl font-bold text-white mb-1.5"><a class="hover:text-emerald-400 transition" href="posts/{p["slug"]}.html">{html.escape(p["title"])}</a>{badge}</h2>\n'
+            f'<div class="text-xs text-slate-500 mb-2.5"><time datetime="{p["date_str"]}">{p["date_human"]}</time> &bull; {html.escape(p["readtime"])}</div>\n'
+            f'<p class="text-sm text-slate-400 leading-relaxed">{html.escape(p["excerpt"])}</p>\n'
             "</article>"
         )
     blog_body = (
-        "<h1>Blog</h1>\n"
-        f'<p class="tagline">{html.escape(SITE_TAGLINE)}</p>\n'
-        '<section class="post-list">\n' + "\n".join(items) + "\n</section>"
+        '<h1 class="text-3xl font-extrabold text-white tracking-tight mb-2">Blog</h1>\n'
+        f'<p class="text-slate-400 text-sm mb-8">{html.escape(SITE_TAGLINE)}</p>\n'
+        '<section class="space-y-5">\n' + "\n".join(items) + "\n</section>"
     )
-    (out / "blog.html").write_text(base("Blog", blog_body), encoding="utf-8")
+    (out / "blog.html").write_text(base("Blog", blog_body, canonical_path="blog.html"), encoding="utf-8")
 
     # Individual post pages.
     for p in posts:
         badge_block = (
-            '<p><span class="badge">Placeholder post</span></p>\n'
+            '<p class="mb-4"><span class="px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/30">Placeholder post</span></p>\n'
             if p["placeholder"] else ""
         )
+        tags_block = ""
+        if p["tags"]:
+            tags_block = (
+                '<div class="flex flex-wrap gap-1.5 mb-2">'
+                + "".join(
+                    f'<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-900 text-slate-400 border border-slate-800">#{html.escape(tag)}</span>'
+                    for tag in p["tags"]
+                )
+                + "</div>\n"
+            )
         body = (
-            '<p><a href="../blog.html">&larr; All posts</a></p>\n'
-            '<article class="post">\n'
-            f"<h1>{html.escape(p['title'])}</h1>\n"
-            f"<time datetime=\"{p['date_str']}\">{p['date_human']}</time>\n"
-            + badge_block + p["html"] + "\n</article>\n"
-            '<p><a href="../blog.html">&larr; All posts</a></p>'
+            '<p class="mb-8"><a class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition" href="../blog.html">&larr; All posts</a></p>\n'
+            + badge_block
+            + "<article>\n"
+            f'<div class="flex items-center gap-2 text-xs text-slate-500 mb-3"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono font-bold">{p["date_human"]}</span><span>&bull;</span><span>{html.escape(p["readtime"])}</span></div>\n'
+            f'<h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-4">{html.escape(p["title"])}</h1>\n'
+            + tags_block
+            + f'<div class="post-body">{p["html"]}</div>\n'
+            + "</article>\n"
+            '<p class="mt-10 pt-6 border-t border-slate-800/70"><a class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition" href="../blog.html">&larr; All posts</a></p>'
         )
         (out / "posts" / f"{p['slug']}.html").write_text(
-            base(p["title"], body, description=p["excerpt"], prefix="../"),
+            base(p["title"], body, description=p["excerpt"], prefix="../",
+                 canonical_path=f"posts/{p['slug']}.html", article_date=p["date_str"]),
             encoding="utf-8",
         )
 
     # About page.
     meta, about_body = parse_front_matter(ROOT / "about.md")
-    about_html = f"<h1>{html.escape(meta.get('title', 'About'))}</h1>\n" + md_to_html(about_body)
-    (out / "about.html").write_text(base("About", about_html), encoding="utf-8")
+    about_html = (
+        f"<h1 class=\"text-3xl font-extrabold text-white tracking-tight mb-4\">{html.escape(meta.get('title', 'About'))}</h1>\n"
+        f'<div class="post-body">{md_to_html(about_body)}</div>'
+    )
+    (out / "about.html").write_text(base("About", about_html, canonical_path="about.html"), encoding="utf-8")
 
-    # Simple 404 page (used by Cloudflare Pages and GitHub Pages).
+    # Simple 404 page.
     (out / "404.html").write_text(
         base("Not found",
-             "<h1>Not found</h1>\n<p>That page does not exist. "
-             '<a href="index.html">Back home</a>.</p>'),
+             '<div class="text-center py-16">\n'
+             '<h1 class="text-4xl font-extrabold text-white mb-3">Not found</h1>\n'
+             '<p class="text-slate-400 text-sm mb-6">That page does not exist.</p>\n'
+             '<a class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition" href="index.html">Back home</a>\n'
+             "</div>"),
         encoding="utf-8",
     )
 
