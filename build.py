@@ -347,7 +347,7 @@ body {{ font-family: 'Plus Jakarta Sans', sans-serif; }}
 </a>
 <nav class="flex items-center gap-5 text-sm">
 <a href="{prefix}blog.html" class="text-slate-400 hover:text-emerald-400 transition">Blog</a>
-<a href="{prefix}index.html#author" class="text-slate-400 hover:text-emerald-400 transition">About</a>
+<a href="{prefix}about.html" class="text-slate-400 hover:text-emerald-400 transition">About</a>
 </nav>
 </div>
 </div>
