@@ -63,9 +63,9 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 </header>
 <main class="flex-grow w-full max-w-3xl mx-auto px-4 sm:px-6 py-10">
 <h1 class="text-3xl font-extrabold text-white tracking-tight mb-4">About</h1>
-<div class="liquid rounded-3xl p-6 sm:p-10"><div class="post-body"><p>Hi, I'm Arjun.</p>
-<p>I'm a performance tester with close to five years of experience, and right now I'm learning Playwright with one goal in mind: becoming an SDET. I started this blog to write about what I learn along the way, in public, mistakes included.</p>
-<p>If you're on a similar path, I hope something here helps you too.</p></div></div>
+<div class="liquid rounded-3xl p-6 sm:p-10"><div class="post-body"><p>Performance Test Engineer with <span data-tenure>4.8</span> years of hands-on experience in performance testing of large-scale enterprise applications. Strong in LoadRunner and Apache JMeter scripting across Web (HTTP/HTML) and Web Services protocols, covering load, stress, endurance, and scalability testing.</p>
+<p>Experienced in leading small teams, identifying bottlenecks, and using AI-assisted approaches to reduce manual effort in testing workflows.</p>
+<p>You can find my toolbox, experience, and profiles on the <a href="index.html">homepage</a>, and my study logs on the <a href="blog.html">blog</a>.</p></div></div>
 </main>
 <footer class="border-t border-slate-800/70 py-8">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
@@ -75,5 +75,15 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 <a href="index.html" class="hover:text-emerald-400 transition">Back to home</a>
 </div>
 </footer>
+<script>
+// Tenure: months since joining Cognizant (Jan 2022), auto-updates every month.
+(function () {
+  var start = new Date(2022, 0, 1);
+  var now = new Date();
+  var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  var years = (months / 12).toFixed(1);
+  document.querySelectorAll('[data-tenure]').forEach(function (el) { el.textContent = years; });
+})();
+</script>
 </body>
 </html>

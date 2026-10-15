@@ -80,5 +80,15 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 <a href="index.html" class="hover:text-emerald-400 transition">Back to home</a>
 </div>
 </footer>
+<script>
+// Tenure: months since joining Cognizant (Jan 2022), auto-updates every month.
+(function () {
+  var start = new Date(2022, 0, 1);
+  var now = new Date();
+  var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  var years = (months / 12).toFixed(1);
+  document.querySelectorAll('[data-tenure]').forEach(function (el) { el.textContent = years; });
+})();
+</script>
 </body>
 </html>
