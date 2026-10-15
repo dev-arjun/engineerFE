@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- Primary SEO Meta Tags -->
-  <title>becominganengineer.in | SDET, Automated Testing & Quality Engineering</title>
-  <meta name="title" content="becominganengineer.in | SDET, Automated Testing & Quality Engineering">
-  <meta name="description" content="Practical SDET study notes, test automation architectures, Playwright & TypeScript tips, performance testing, and CI/CD quality pipelines documented in public by Nagarjun.">
-  <meta name="keywords" content="becominganengineer, nagxrjun, SDET, Software Development Engineer in Test, Playwright, TypeScript, Test Automation, API Testing, Performance Testing, QA Engineering, CI CD Testing, Selenium">
+  <title>Nagarjun | Performance Engineer becoming an SDET</title>
+  <meta name="title" content="Nagarjun | Performance Engineer becoming an SDET">
+  <meta name="description" content="Portfolio and learning-in-public blog of Nagarjun: 4.8 years as a Performance Engineer, now learning SDET and test automation (Playwright, TypeScript) in public.">
   <meta name="author" content="Nagarjun (@nagxrjun)">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://becominganengineer.in/">
@@ -16,34 +15,30 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://becominganengineer.in/">
-  <meta property="og:title" content="becominganengineer.in | SDET & Automated Testing Journey">
-  <meta property="og:description" content="Real-world SDET patterns, test framework blueprints, and automation lessons learned in public by @nagxrjun.">
+  <meta property="og:title" content="Nagarjun | Performance Engineer becoming an SDET">
+  <meta property="og:description" content="Portfolio and learning-in-public blog: performance testing, Playwright, TypeScript, and the road to SDET.">
   <meta property="og:image" content="https://placehold.co/1200x630/0f172a/10b981?text=becominganengineer.in">
 
   <!-- Twitter Meta Tags -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="becominganengineer.in | SDET & Automated Testing Journey">
-  <meta property="twitter:description" content="Real-world SDET patterns, test framework blueprints, and automation lessons learned in public by @nagxrjun.">
+  <meta property="twitter:title" content="Nagarjun | Performance Engineer becoming an SDET">
+  <meta property="twitter:description" content="Portfolio and learning-in-public blog: performance testing, Playwright, TypeScript, and the road to SDET.">
   <meta property="twitter:image" content="https://placehold.co/1200x630/0f172a/10b981?text=becominganengineer.in">
 
   <!-- Structured Data JSON-LD for Search Engines -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "becominganengineer.in",
+    "@type": "Person",
+    "name": "Nagarjun",
     "url": "https://becominganengineer.in/",
-    "description": "Practical insights and technical blueprints on SDET, test automation, Playwright, TypeScript, and quality engineering.",
-    "publisher": {
-      "@type": "Person",
-      "name": "Nagarjun",
-      "url": "https://becominganengineer.in/",
-      "sameAs": [
-        "https://instagram.com/nagxrjun",
-        "https://github.com/devarjun",
-        "https://www.linkedin.com/in/Nagarjunsugavaneswaran"
-      ]
-    }
+    "jobTitle": "Performance Engineer",
+    "description": "Performance Engineer with 4.8 years of experience, learning SDET and test automation in public.",
+    "sameAs": [
+      "https://github.com/devarjun",
+      "https://www.linkedin.com/in/Nagarjunsugavaneswaran",
+      "https://instagram.com/nagxrjun"
+    ]
   }
   </script>
 
@@ -105,6 +100,23 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
+    /* One orchestrated hero reveal: staggered, calm, deliberate */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .reveal-1 { animation-delay: 0.05s; }
+    .reveal-2 { animation-delay: 0.15s; }
+    .reveal-3 { animation-delay: 0.28s; }
+    .reveal-4 { animation-delay: 0.42s; }
+    .reveal-5 { animation-delay: 0.56s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none; opacity: 1; }
+    }
   </style>
 </head>
 
@@ -113,162 +125,180 @@
   <header class="sticky top-0 z-40 border-b glass-header transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
-        
+
         <!-- Brand / Logo -->
-        <a href="#" class="flex items-center gap-3 group" aria-label="becominganengineer.in Homepage">
+        <a href="index.html" class="flex items-center gap-3 group" aria-label="Nagarjun homepage">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-500 p-[2px] transition duration-300 group-hover:scale-105 shadow-md shadow-emerald-500/10">
             <div class="w-full h-full bg-white dark:bg-brand-darker rounded-[10px] flex items-center justify-center">
-              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-500"></i>
+              <i data-lucide="terminal" class="w-5 h-5 text-emerald-500"></i>
             </div>
           </div>
           <div>
-            <div class="flex items-center gap-1.5">
-              <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">becominganengineer<span class="text-emerald-500">.in</span></span>
-            </div>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Software Development Engineer in Test</p>
+            <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">nagarjun<span class="text-emerald-500">.dev</span></span>
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">becominganengineer.in</p>
           </div>
         </a>
 
-        <!-- Desktop Quick Links & Actions -->
-        <div class="flex items-center gap-2 sm:gap-3">
-
-          <!-- Light / Dark Mode Toggle -->
+        <!-- Nav -->
+        <nav class="flex items-center gap-1 sm:gap-2">
           <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition" aria-label="Toggle theme">
             <i data-lucide="sun" id="theme-icon-light" class="w-4 h-4 hidden"></i>
             <i data-lucide="moon" id="theme-icon-dark" class="w-4 h-4"></i>
           </button>
-
-          <!-- Blog -->
-          <a href="blog.html" class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 px-2 py-1.5 transition">
-            Blog
+          <a href="blog.html" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 px-2.5 py-1.5 transition">Blog</a>
+          <a href="about.html" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 px-2.5 py-1.5 transition">About</a>
+          <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
           </a>
-
-          <!-- About -->
-          <a href="about.html" class="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 px-2 py-1.5 transition">
-            About
+          <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-blue-500 transition" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-        </div>
+        </nav>
       </div>
     </div>
   </header>
 
   <main class="flex-grow">
-    <section class="pt-10 pb-8 sm:pt-14 sm:pb-10 border-b border-slate-200 dark:border-brand-borderDark/60">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-[11px] sm:text-xs font-mono mb-4 max-w-full">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-          <span class="text-center leading-relaxed">Automated Testing &bull; Framework Architecture &bull; CI Quality</span>
-        </div>
 
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
-          Learning <span class="text-emerald-500">SDET</span> &amp; Test Automation in Public
-        </h1>
+    <!-- Hero: asymmetric, editorial. Big type left, status card right. -->
+    <section class="pt-14 pb-12 sm:pt-20 sm:pb-16 border-b border-slate-200 dark:border-brand-borderDark/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
 
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-6">
-          Real study logs, debugging journals, and reproducible patterns for Playwright, TypeScript, API test suites, Docker test harnesses, and CI/CD pipelines.
-        </p>
-
-        <!-- Search Bar with Live Counting -->
-        <div class="max-w-xl mx-auto relative mb-6">
-          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-          <input 
-            type="text" 
-            id="search-input" 
-            oninput="handleSearch(this.value)"
-            placeholder="Search Playwright, Mocking, Flakiness, API, Tags..." 
-            class="w-full pl-11 pr-24 py-3 rounded-xl bg-white dark:bg-brand-cardDark border border-slate-300 dark:border-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-          <button 
-            onclick="clearSearch()" 
-            id="clear-search-btn" 
-            class="hidden absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 text-[11px] font-mono bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded hover:text-slate-900 dark:hover:text-white transition">
-            Clear
-          </button>
-        </div>
-
-        <!-- Tag Categories Filter (Dynamically computed from posts) -->
-        <div class="flex items-center justify-center gap-1.5 flex-wrap" id="tags-bar">
-          <!-- Populated dynamically based on post tags -->
-        </div>
-      </div>
-    </section>
-
-    <section class="py-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
-        <div class="flex items-center gap-2">
-          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Articles &amp; Test Logs</h2>
-          <span id="post-counter" class="text-xs font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">0 posts</span>
-        </div>
-        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Click any card to read full code</span>
-        </div>
-      </div>
-
-      <!-- Articles Grid -->
-      <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Generated dynamically -->
-      </div>
-
-      <!-- Empty State -->
-      <div id="no-results" class="hidden text-center py-16">
-        <div class="w-14 h-14 mx-auto mb-3 rounded-xl bg-slate-200 dark:bg-slate-800/80 flex items-center justify-center text-slate-400">
-          <i data-lucide="filter-x" class="w-7 h-7"></i>
-        </div>
-        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">No articles found</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">No notes match your active tag filter or search query.</p>
-        <button onclick="resetAllFilters()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition">
-          Reset Filter to All
-        </button>
-      </div>
-    </section>
-
-    <section id="author" class="py-12 bg-slate-100 dark:bg-slate-950/60 border-t border-slate-200 dark:border-brand-borderDark">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 shadow-sm">
-          
-          <!-- Avatar -->
-          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 p-[2px] flex-shrink-0">
-            <div class="w-full h-full rounded-[14px] bg-slate-50 dark:bg-brand-dark flex items-center justify-center text-3xl">
-              🧪
-            </div>
+        <div class="lg:col-span-7">
+          <p class="reveal reveal-1 font-mono text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 mb-5">// becoming an engineer, in public</p>
+          <h1 class="reveal reveal-2 text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.05] mb-5">
+            Hi, I'm Nagarjun.<br>
+            <span class="text-slate-400 dark:text-slate-500">Performance Engineer,</span><br>
+            <span class="text-emerald-500">becoming an SDET.</span>
+          </h1>
+          <p class="reveal reveal-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mb-8">
+            4.8 years as a Performance Engineer. Now learning test automation in public:
+            Playwright, TypeScript, APIs. This site is my portfolio and my study log,
+            mistakes included.
+          </p>
+          <div class="reveal reveal-4 flex flex-wrap items-center gap-3">
+            <a href="blog.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition shadow-sm shadow-emerald-500/20">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              Read the blog
+            </a>
+            <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-brand-cardDark border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-brand-cardDark border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
           </div>
+        </div>
 
-          <!-- Bio -->
-          <div class="flex-grow text-center sm:text-left">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Nagarjun</h3>
-                <p class="text-xs font-mono text-emerald-600 dark:text-emerald-400">becominganengineer.in &bull; SDET Journey</p>
+        <!-- Status card: the one thing people remember -->
+        <div class="lg:col-span-5 reveal reveal-5">
+          <div class="rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
+            <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-5">$ status --now</p>
+            <dl class="space-y-4 text-sm">
+              <div class="flex gap-3">
+                <dt class="font-mono text-xs text-emerald-600 dark:text-emerald-400 w-24 shrink-0 pt-0.5">learning</dt>
+                <dd class="text-slate-700 dark:text-slate-300">Playwright + TypeScript, API testing</dd>
               </div>
-
-              <!-- Instagram pill button -->
-              <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" 
-                 class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-90 shadow-sm transition">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                <span>Follow @nagxrjun</span>
-              </a>
-            </div>
-
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-              I document real SDET learning logs, test framework architectures, flakiness resolutions, and automation blueprints in public. Follow along on Instagram for quick code reels and carousel summaries!
-            </p>
-
-            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-slate-500 dark:text-slate-400">
-              <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 flex items-center gap-1 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @nagxrjun
-              </a>
-              <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> GitHub Repos
-              </a>
-              <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 flex items-center gap-1 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn
-              </a>
-            </div>
+              <div class="flex gap-3">
+                <dt class="font-mono text-xs text-emerald-600 dark:text-emerald-400 w-24 shrink-0 pt-0.5">writing</dt>
+                <dd class="text-slate-700 dark:text-slate-300">Study logs and debugging journals on the blog</dd>
+              </div>
+              <div class="flex gap-3">
+                <dt class="font-mono text-xs text-emerald-600 dark:text-emerald-400 w-24 shrink-0 pt-0.5">open to</dt>
+                <dd class="text-slate-700 dark:text-slate-300">SDET and quality engineering roles</dd>
+              </div>
+            </dl>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About + Skills -->
+    <section class="py-12 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+        <div class="lg:col-span-7">
+          <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">01 / about</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Tester first, engineer always.</h2>
+          <div class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed space-y-4 max-w-2xl">
+            <p>I have spent close to five years breaking systems on purpose: finding where they slow down, where they fall over, and why. Performance testing taught me to think in systems, not just in test cases.</p>
+            <p>Now I am learning to build what I used to only break: automation frameworks, API test suites, CI pipelines. I write about all of it here, in public, so the learning sticks and maybe helps someone on the same path.</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">02 / toolbox</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">Performance Testing</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">Apache JMeter</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">BlazeMeter</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">LogicMonitor</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">Playwright <span class="opacity-70">· learning</span></span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">TypeScript <span class="opacity-70">· learning</span></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="py-12 sm:py-16 border-t border-slate-200 dark:border-brand-borderDark/60 bg-slate-100/60 dark:bg-slate-950/40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">03 / experience</p>
+        <div class="rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 p-6 sm:p-8 max-w-3xl">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Performance Engineer</h3>
+            <span class="font-mono text-xs text-slate-500 dark:text-slate-400">2022 — present</span>
+          </div>
+          <p class="font-mono text-xs text-emerald-600 dark:text-emerald-400 mb-3">Cognizant · 4.8 years</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Load, stress, and endurance testing of enterprise applications: designing workloads,
+            analyzing bottlenecks, and working with dev teams to fix what the numbers reveal.
+          </p>
         </div>
       </div>
     </section>
+
+    <!-- Latest from the blog -->
+    <section class="py-12 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between mb-6">
+          <div>
+            <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">04 / writing</p>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Latest from the blog</h2>
+          </div>
+          <a href="blog.html" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:translate-x-0.5 transition">
+            All posts <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <div id="latest-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered from posts.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-12 sm:py-16 border-t border-slate-200 dark:border-brand-borderDark/60">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">05 / contact</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">Let's talk testing.</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-7 max-w-xl mx-auto">On a similar path, hiring for SDET roles, or just want to trade notes on flaky tests? Find me here.</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:opacity-90 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            github.com/devarjun
+          </a>
+          <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A66C2] text-white text-sm font-semibold hover:opacity-90 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-slate-200 dark:border-brand-borderDark bg-white dark:bg-brand-darker py-8">
@@ -278,11 +308,9 @@
         <span>&bull;</span>
         <span>Curated by Nagarjun</span>
       </div>
-
       <div class="flex items-center gap-4">
-        <a href="https://instagram.com/nagxrjun" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 transition flex items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @nagxrjun
-        </a>
+        <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 transition">LinkedIn</a>
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-emerald-500 transition">
           Back to Top &uarr;
         </button>
@@ -291,273 +319,49 @@
   </footer>
 
   <script>
-    // Initial SDET-Focused Blog Posts Seed
-    const initialPosts = [
-      {
-        id: 1,
-        title: "Flakiness In Playwright: Why getByRole Beats XPath & CSS Selectors",
-        tags: ["Playwright", "Locators", "Best-Practices", "E2E"],
-        readTime: "6 min read",
-        date: "2026-03-24",
-        summary: "I spent hours debugging intermittent CI failures caused by fragile class-based locators. Here is why switching to accessibility-first role locators reduced test flakiness to zero.",
-        code: `// Flaky: dependent on CSS styling class
-// await page.locator('.btn-primary.checkout-v2').click();
-
-// Resilient: waits for ARIA accessibility tree readiness
-await page.getByRole('button', { name: /complete payment/i }).click({
-  timeout: 5000
-});`
-      },
-      {
-        id: 2,
-        title: "Mocking Network Payloads with Playwright Route Interception",
-        tags: ["Playwright", "Mocking", "API-Testing"],
-        readTime: "7 min read",
-        date: "2026-03-18",
-        summary: "Testing edge cases like HTTP 500s or slow payment gateways shouldn't rely on unstable backend microservices. Here is how I stub network responses in local automated tests.",
-        code: `await page.route('**/api/v1/checkout', async (route) => {
-  // Simulate synthetic 503 Service Unavailable
-  await route.fulfill({
-    status: 503,
-    contentType: 'application/json',
-    body: JSON.stringify({ error: "Payment processor timeout" })
-  });
-});`
-      },
-      {
-        id: 3,
-        title: "Contract Testing with Pact: Stopping Breaking Microservice Changes",
-        tags: ["Contract-Testing", "Pact", "API-Testing", "CI-CD"],
-        readTime: "9 min read",
-        date: "2026-03-10",
-        summary: "Our staging tests kept breaking whenever backend changed JSON key names. I learned how to set up Consumer-Driven Contracts using Pact in GitHub Actions.",
-        code: `// Consumer test definition
-await pact.addInteraction({
-  state: 'order #101 exists',
-  uponReceiving: 'a request for order 101',
-  withRequest: { method: 'GET', path: '/orders/101' },
-  willRespondWith: {
-    status: 200,
-    body: { orderId: Matchers.string("101"), totalAmount: Matchers.decimal(49.99) }
-  }
-});`
-      },
-      {
-        id: 4,
-        title: "Running Parallel Tests in Docker Containers without Port Clashes",
-        tags: ["Docker", "CI-CD", "Infrastructure"],
-        readTime: "8 min read",
-        date: "2026-02-28",
-        summary: "My local test suite took 22 minutes sequentially. By containerizing browsers and spinning up isolated test environments with dynamic port allocation, suite time dropped to 3 minutes.",
-        code: `# Docker compose test runner excerpt
-services:
-  sdet-runner:
-    image: mcr.microsoft.com/playwright:v1.49.0-jammy
-    ipc: host
-    shm_size: '2gb'
-    command: npx playwright test --workers=4`
-      },
-      {
-        id: 5,
-        title: "Distributed Load Testing with k6: Measuring p99 Latency Spikes",
-        tags: ["Performance", "k6", "Load-Testing"],
-        readTime: "8 min read",
-        date: "2026-02-15",
-        summary: "Average response time hides catastrophic user slowdowns. In this study note, I built a ramp-up k6 load script to track 99th percentile latencies and database pool saturation.",
-        code: `import http from 'k6/http';
-import { check, sleep } from 'k6';
-
-export const options = {
-  stages: [
-    { duration: '30s', target: 50 },
-    { duration: '1m', target: 200 },
-    { duration: '30s', target: 0 }
-  ],
-  thresholds: {
-    http_req_duration: ['p(99)<400'] // 99% of requests must finish below 400ms
-  }
-};`
-      },
-      {
-        id: 6,
-        title: "Mutation Testing with Stryker: Are Your Tests Actually Asserting Anything?",
-        tags: ["Mutation-Testing", "Quality-Engineering", "Best-Practices"],
-        readTime: "6 min read",
-        date: "2026-01-28",
-        summary: "100% line coverage can be completely useless if assertions are weak. I used mutation testing to inject subtle bugs into our auth handler to check if our tests would catch them.",
-        code: `// Original logic: if (user.isActive && user.hasCredits)
-// Stryker mutant: if (user.isActive || user.hasCredits)
-// Result: Killed (Test suite successfully failed on mutated logic)`
-      }
-    ];
-
-    // State Variables
-    let posts = [];
-    let activeTag = 'ALL';
-    let searchQuery = '';
-
-    // Load posts from posts.json (generated at build time from posts/*.md).
-    // Falls back to the built-in seed list if posts.json is missing,
-    // e.g. when previewing the page locally without a build.
-    async function initPosts() {
+    // Latest posts: pulled from posts.json (built from posts/*.md).
+    async function initLatestPosts() {
+      const container = document.getElementById('latest-posts');
       try {
         const res = await fetch('posts.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('no posts.json');
-        posts = await res.json();
-      } catch (e) {
-        posts = initialPosts.map(p => ({ ...p, slug: 'seed-' + p.id }));
-      }
-      renderTagsBar();
-      renderArticles();
-    }
-
-    // Dynamic Tag extraction: Recomputes categories from current posts list
-    function renderTagsBar() {
-      const tagsContainer = document.getElementById('tags-bar');
-      const allTagsMap = {};
-
-      posts.forEach(p => {
-        (p.tags || []).forEach(t => {
-          const clean = t.trim();
-          if (clean) allTagsMap[clean] = (allTagsMap[clean] || 0) + 1;
-        });
-      });
-
-      const uniqueTags = Object.keys(allTagsMap).sort();
-      
-      let html = `
-        <button onclick="selectTag('ALL')" class="tag-pill px-3 py-1 rounded-full text-xs font-semibold transition ${
-          activeTag === 'ALL'
-            ? 'bg-emerald-600 text-white shadow-sm'
-            : 'bg-white dark:bg-brand-cardDark text-slate-600 dark:text-slate-400 hover:text-emerald-500 border border-slate-200 dark:border-slate-800'
-        }">
-          #All (${posts.length})
-        </button>
-      `;
-
-      uniqueTags.forEach(tag => {
-        const isSelected = activeTag.toLowerCase() === tag.toLowerCase();
-        html += `
-          <button onclick="selectTag('${tag}')" class="tag-pill px-3 py-1 rounded-full text-xs font-semibold transition ${
-            isSelected 
-              ? 'bg-emerald-600 text-white shadow-sm' 
-              : 'bg-white dark:bg-brand-cardDark text-slate-600 dark:text-slate-400 hover:text-emerald-500 border border-slate-200 dark:border-slate-800'
-          }">
-            #${tag} <span class="opacity-60 text-[10px]">(${allTagsMap[tag]})</span>
-          </button>
-        `;
-      });
-
-      tagsContainer.innerHTML = html;
-    }
-
-    function selectTag(tag) {
-      activeTag = tag;
-      renderTagsBar();
-      renderArticles();
-    }
-
-    function handleSearch(val) {
-      searchQuery = val;
-      const clearBtn = document.getElementById('clear-search-btn');
-      if (val.trim()) {
-        clearBtn.classList.remove('hidden');
-      } else {
-        clearBtn.classList.add('hidden');
-      }
-      renderArticles();
-    }
-
-    function clearSearch() {
-      document.getElementById('search-input').value = '';
-      handleSearch('');
-    }
-
-    function resetAllFilters() {
-      activeTag = 'ALL';
-      clearSearch();
-      renderTagsBar();
-      renderArticles();
-    }
-
-    function renderArticles() {
-      const container = document.getElementById('articles-container');
-      const counter = document.getElementById('post-counter');
-      const noResults = document.getElementById('no-results');
-
-      const filtered = posts.filter(post => {
-        // Tag match
-        const matchesTag = activeTag === 'ALL' || 
-          (post.tags && post.tags.some(t => t.toLowerCase() === activeTag.toLowerCase()));
-
-        // Search match
-        const q = searchQuery.toLowerCase().trim();
-        const matchesSearch = !q || 
-          post.title.toLowerCase().includes(q) ||
-          post.summary.toLowerCase().includes(q) ||
-          (post.tags && post.tags.some(t => t.toLowerCase().includes(q)));
-
-        return matchesTag && matchesSearch;
-      });
-
-      counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'post' : 'posts'}`;
-
-      if (filtered.length === 0) {
-        container.innerHTML = '';
-        noResults.classList.remove('hidden');
-        return;
-      }
-
-      noResults.classList.add('hidden');
-
-      container.innerHTML = filtered.map(post => {
-        return `
+        const posts = await res.json();
+        const latest = posts.slice(0, 3);
+        if (!latest.length) {
+          container.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400 col-span-full">No posts yet. The first study log is on its way.</p>';
+          return;
+        }
+        container.innerHTML = latest.map(post => `
           <a href="posts/${post.slug}.html"
-             class="group cursor-pointer block rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-emerald-950/20 relative">
-            <div>
-              <!-- Meta Header -->
-              <div class="flex items-center justify-between gap-2 mb-3 text-xs text-slate-500 dark:text-slate-400">
-                <span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-                  <i data-lucide="calendar" class="w-3 h-3"></i>
-                  ${post.date}
-                </span>
-                <span class="flex items-center gap-1">
-                  <i data-lucide="clock" class="w-3 h-3"></i>
-                  ${post.readTime}
-                </span>
-              </div>
-
-              <!-- Title -->
-              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition leading-snug mb-2">
-                ${escapeHtml(post.title)}
-              </h3>
-
-              <!-- Summary -->
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3">
-                ${escapeHtml(post.summary)}
-              </p>
+             class="group block rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex items-center justify-between gap-2 mb-3 text-xs text-slate-500 dark:text-slate-400">
+              <span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">${escapeHtml(post.date)}</span>
+              <span>${escapeHtml(post.readTime)}</span>
             </div>
-
-            <!-- Tags & Footer -->
-            <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80">
-              <div class="flex flex-wrap gap-1.5 mb-3">
-                ${(post.tags || []).map(tag => `
-                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800">
-                    #${escapeHtml(tag)}
-                  </span>
-                `).join('')}
-              </div>
-
-              <div class="flex items-center justify-between text-xs text-emerald-600 dark:text-emerald-400 font-semibold group-hover:translate-x-0.5 transition">
-                <span>Read Full Post</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-              </div>
-            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition leading-snug mb-2">
+              ${escapeHtml(post.title)}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 mb-4">
+              ${escapeHtml(post.summary)}
+            </p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              Read post <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition"></i>
+            </span>
           </a>
-        `;
-      }).join('');
+        `).join('');
+        if (window.lucide) lucide.createIcons();
+      } catch (e) {
+        container.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400 col-span-full">Posts are loading. <a href="blog.html" class="text-emerald-600 dark:text-emerald-400 font-semibold">Browse the blog</a>.</p>';
+      }
+    }
 
-      if (window.lucide) lucide.createIcons();
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
 
     // Light / Dark Theme Toggle
@@ -598,20 +402,11 @@ export const options = {
       }
     }
 
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
     // Lifecycle
     document.addEventListener('DOMContentLoaded', () => {
       initTheme();
-      initPosts(); // async: fetches posts.json, then renders tags + articles
-
+      initLatestPosts();
+      if (window.lucide) lucide.createIcons();
     });
   </script>
 </body>
