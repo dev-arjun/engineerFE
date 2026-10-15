@@ -1,413 +1,412 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Primary SEO Meta Tags -->
-  <title>Nagarjun | Performance Engineer becoming an SDET</title>
-  <meta name="title" content="Nagarjun | Performance Engineer becoming an SDET">
-  <meta name="description" content="Portfolio and learning-in-public blog of Nagarjun: 4.8 years as a Performance Engineer, now learning SDET and test automation (Playwright, TypeScript) in public.">
-  <meta name="author" content="Nagarjun (@nagxrjun)">
+  <title>Arjun | Performance Engineer becoming an SDET</title>
+  <meta name="title" content="Arjun | Performance Engineer becoming an SDET">
+  <meta name="description" content="Portfolio and learning-in-public blog of Arjun: 4.8 years as a Performance Engineer, now learning SDET and test automation (Playwright, TypeScript) in public.">
+  <meta name="author" content="Arjun">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://becominganengineer.in/">
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://becominganengineer.in/">
-  <meta property="og:title" content="Nagarjun | Performance Engineer becoming an SDET">
+  <meta property="og:title" content="Arjun | Performance Engineer becoming an SDET">
   <meta property="og:description" content="Portfolio and learning-in-public blog: performance testing, Playwright, TypeScript, and the road to SDET.">
-  <meta property="og:image" content="https://placehold.co/1200x630/0f172a/10b981?text=becominganengineer.in">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Arjun | Performance Engineer becoming an SDET">
+  <meta name="twitter:description" content="Portfolio and learning-in-public blog: performance testing, Playwright, TypeScript, and the road to SDET.">
 
-  <!-- Twitter Meta Tags -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Nagarjun | Performance Engineer becoming an SDET">
-  <meta property="twitter:description" content="Portfolio and learning-in-public blog: performance testing, Playwright, TypeScript, and the road to SDET.">
-  <meta property="twitter:image" content="https://placehold.co/1200x630/0f172a/10b981?text=becominganengineer.in">
-
-  <!-- Structured Data JSON-LD for Search Engines -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Nagarjun",
+    "name": "Arjun",
     "url": "https://becominganengineer.in/",
     "jobTitle": "Performance Engineer",
     "description": "Performance Engineer with 4.8 years of experience, learning SDET and test automation in public.",
     "sameAs": [
       "https://github.com/devarjun",
-      "https://www.linkedin.com/in/Nagarjunsugavaneswaran",
-      "https://instagram.com/nagxrjun"
+      "https://www.linkedin.com/in/Nagarjunsugavaneswaran"
     ]
   }
   </script>
 
-  <!-- Tailwind CSS & Google Fonts -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              emerald: '#10B981',
-              dark: '#0B0F19',
-              darker: '#06080F',
-              cardDark: '#111726',
-              borderDark: '#1E293B',
-              cardLight: '#FFFFFF',
-              borderLight: '#E2E8F0'
-            }
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      transition: background-color 0.25s ease, color 0.25s ease;
+    /* Page-specific: hero, simulator, interlude. Everything else lives in style.css. */
+
+    .hero {
+      min-height: 88svh;
+      display: flex;
+      align-items: flex-start;
     }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    .hero .col { padding-top: 26svh; }
+    .hero h1 {
+      width: max-content;
+      max-width: calc(100vw - (var(--gutter) * 2));
     }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
+    .hero .support {
+      font-size: var(--step-body);
+      line-height: 1.55;
+      max-width: 44ch;
+      margin: 28px 0 0;
     }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #47556940;
-      border-radius: 9999px;
+    .hero .actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
     }
-    .dark .glass-header {
-      background: rgba(11, 15, 25, 0.85);
-      border-color: rgba(30, 41, 59, 0.7);
+
+    /* The load-test simulation: a quiet surface, live numbers. */
+    .sim { margin-top: 56px; }
+    .sim .panel {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      max-width: var(--col);
     }
-    .glass-header {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: rgba(226, 232, 240, 0.9);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .sim .panel p.note {
+      font-size: var(--step-small);
+      color: var(--muted);
+      margin: 0 0 20px;
+      max-width: 52ch;
     }
-    /* One orchestrated hero reveal: staggered, calm, deliberate */
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .sim .meters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 0 0 24px;
     }
-    .reveal {
+    .sim .meter .v {
+      font-size: var(--step-lead);
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+    .sim .meter .v.live { color: var(--accent); }
+    .sim .meter .k {
+      font-size: var(--step-small);
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .sim .verdict {
+      font-size: var(--step-small);
+      color: var(--muted);
+      margin: 16px 0 0;
+      min-height: 1.4em;
+    }
+    @media (max-width: 560px) {
+      .sim .meters { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* About photograph: column width, one treatment. */
+    .about-photo {
+      margin: 56px 0 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .about-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .about-photo.slow img { animation: drift 24s ease-in-out infinite alternate; }
+    @keyframes drift {
+      from { transform: scale(1); }
+      to { transform: scale(1.06); }
+    }
+
+    /* Interlude: three photographs crossfading, like light shifting. */
+    .band { padding: clamp(96px, 12vw, 140px) 0 0; }
+    .band .frame {
+      position: relative;
+      width: min(var(--col), 100% - (var(--gutter) * 2));
+      margin-left: clamp(var(--gutter), 18vw, 300px);
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+    }
+    @media (max-width: 760px) {
+      .band .frame { margin-left: var(--gutter); margin-right: var(--gutter); width: auto; }
+    }
+    .band .frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       opacity: 0;
-      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transition: opacity 1.6s ease;
     }
-    .reveal-1 { animation-delay: 0.05s; }
-    .reveal-2 { animation-delay: 0.15s; }
-    .reveal-3 { animation-delay: 0.28s; }
-    .reveal-4 { animation-delay: 0.42s; }
-    .reveal-5 { animation-delay: 0.56s; }
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { animation: none; opacity: 1; }
+    .band .frame img.on { opacity: 1; }
+
+    .record { margin-top: 56px; }
+    .record .word { font-size: var(--step-small); color: var(--ink); font-weight: 500; margin: 0 0 12px; }
+    .record .entry { font-size: var(--step-body); }
+    .record .entry .when { color: var(--muted); font-size: var(--step-small); font-variant-numeric: tabular-nums; }
+    .record .entry p { margin: 8px 0 0; font-size: var(--step-small); color: var(--muted); max-width: 52ch; }
+
+    .contact-sentence {
+      font-size: clamp(1.625rem, 1.2rem + 2vw, 2.25rem);
+      line-height: 1.25;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      margin: 0 0 40px;
+      max-width: 28ch;
     }
+    .contact-q { font-size: var(--step-lead); font-weight: 500; margin: 0 0 16px; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-links a { font-size: var(--step-lead); overflow-wrap: anywhere; }
   </style>
 </head>
 
-<body class="bg-slate-50 dark:bg-[#06080F] text-slate-800 dark:text-slate-200 min-h-screen flex flex-col justify-between selection:bg-emerald-500/20 selection:text-emerald-500 custom-scrollbar">
+<body>
 
-  <header class="sticky top-0 z-40 border-b glass-header transition-colors">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
-
-        <!-- Brand / Logo -->
-        <a href="index.html" class="flex items-center gap-3 group" aria-label="Nagarjun homepage">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-500 p-[2px] transition duration-300 group-hover:scale-105 shadow-md shadow-emerald-500/10">
-            <div class="w-full h-full bg-white dark:bg-brand-darker rounded-[10px] flex items-center justify-center">
-              <i data-lucide="terminal" class="w-5 h-5 text-emerald-500"></i>
-            </div>
-          </div>
-          <div>
-            <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">nagarjun<span class="text-emerald-500">.dev</span></span>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">becominganengineer.in</p>
-          </div>
-        </a>
-
-        <!-- Nav -->
-        <nav class="flex items-center gap-1 sm:gap-2">
-          <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition" aria-label="Toggle theme">
-            <i data-lucide="sun" id="theme-icon-light" class="w-4 h-4 hidden"></i>
-            <i data-lucide="moon" id="theme-icon-dark" class="w-4 h-4"></i>
-          </button>
-          <a href="blog.html" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 px-2.5 py-1.5 transition">Blog</a>
-          <a href="about.html" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 px-2.5 py-1.5 transition">About</a>
-          <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-blue-500 transition" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-        </nav>
-      </div>
-    </div>
+  <header class="site-header">
+    <a class="wordmark" href="index.html">becominganengineer.in</a>
+    <nav><a href="blog.html">Blog</a></nav>
   </header>
 
-  <main class="flex-grow">
+  <main>
 
-    <!-- Hero: asymmetric, editorial. Big type left, status card right. -->
-    <section class="pt-14 pb-12 sm:pt-20 sm:pb-16 border-b border-slate-200 dark:border-brand-borderDark/60">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
-
-        <div class="lg:col-span-7">
-          <p class="reveal reveal-1 font-mono text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 mb-5">// becoming an engineer, in public</p>
-          <h1 class="reveal reveal-2 text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.05] mb-5">
-            Hi, I'm Nagarjun.<br>
-            <span class="text-slate-400 dark:text-slate-500">Performance Engineer,</span><br>
-            <span class="text-emerald-500">becoming an SDET.</span>
-          </h1>
-          <p class="reveal reveal-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mb-8">
-            4.8 years as a Performance Engineer. Now learning test automation in public:
-            Playwright, TypeScript, APIs. This site is my portfolio and my study log,
-            mistakes included.
-          </p>
-          <div class="reveal reveal-4 flex flex-wrap items-center gap-3">
-            <a href="blog.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition shadow-sm shadow-emerald-500/20">
-              <i data-lucide="book-open" class="w-4 h-4"></i>
-              Read the blog
-            </a>
-            <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-brand-cardDark border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-brand-cardDark border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
-
-        <!-- Status card: the one thing people remember -->
-        <div class="lg:col-span-5 reveal reveal-5">
-          <div class="rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm">
-            <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-5">$ status --now</p>
-            <dl class="space-y-4 text-sm">
-              <div class="flex gap-3">
-                <dt class="font-mono text-xs text-emerald-600 dark:text-emerald-400 w-24 shrink-0 pt-0.5">learning</dt>
-                <dd class="text-slate-700 dark:text-slate-300">Playwright + TypeScript, API testing</dd>
-              </div>
-              <div class="flex gap-3">
-                <dt class="font-mono text-xs text-emerald-600 dark:text-emerald-400 w-24 shrink-0 pt-0.5">writing</dt>
-                <dd class="text-slate-700 dark:text-slate-300">Study logs and debugging journals on the blog</dd>
-              </div>
-              <div class="flex gap-3">
-                <dt class="font-mono text-xs text-emerald-600 dark:text-emerald-400 w-24 shrink-0 pt-0.5">open to</dt>
-                <dd class="text-slate-700 dark:text-slate-300">SDET and quality engineering roles</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- About + Skills -->
-    <section class="py-12 sm:py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
-
-        <div class="lg:col-span-7">
-          <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">01 / about</p>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Tester first, engineer always.</h2>
-          <div class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed space-y-4 max-w-2xl">
-            <p>I have spent close to five years breaking systems on purpose: finding where they slow down, where they fall over, and why. Performance testing taught me to think in systems, not just in test cases.</p>
-            <p>Now I am learning to build what I used to only break: automation frameworks, API test suites, CI pipelines. I write about all of it here, in public, so the learning sticks and maybe helps someone on the same path.</p>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5">
-          <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">02 / toolbox</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">Performance Testing</span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">Apache JMeter</span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">BlazeMeter</span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">LogicMonitor</span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">Playwright <span class="opacity-70">· learning</span></span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">TypeScript <span class="opacity-70">· learning</span></span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section class="py-12 sm:py-16 border-t border-slate-200 dark:border-brand-borderDark/60 bg-slate-100/60 dark:bg-slate-950/40">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">03 / experience</p>
-        <div class="rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 p-6 sm:p-8 max-w-3xl">
-          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Performance Engineer</h3>
-            <span class="font-mono text-xs text-slate-500 dark:text-slate-400">2022 — present</span>
-          </div>
-          <p class="font-mono text-xs text-emerald-600 dark:text-emerald-400 mb-3">Cognizant · 4.8 years</p>
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Load, stress, and endurance testing of enterprise applications: designing workloads,
-            analyzing bottlenecks, and working with dev teams to fix what the numbers reveal.
-          </p>
+    <section class="hero">
+      <div class="col">
+        <h1 class="display rise">Performance Engineer,<br> becoming an SDET.</h1>
+        <p class="support rise">4.8 years as a performance engineer at Cognizant. Now learning Playwright, TypeScript, and API testing in public.</p>
+        <div class="actions rise">
+          <a class="btn" href="blog.html">Read the blog</a>
+          <a class="text-link" href="https://github.com/devarjun" target="_blank" rel="noopener">github.com/devarjun</a>
         </div>
       </div>
     </section>
 
-    <!-- Latest from the blog -->
-    <section class="py-12 sm:py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-6">
-          <div>
-            <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">04 / writing</p>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Latest from the blog</h2>
+    <section class="sim" aria-label="A small demonstration">
+      <div class="col">
+        <div class="panel rise">
+          <p class="note">What I do for a living, in six seconds: a load test, simulated in your browser. No servers were harmed.</p>
+          <div class="meters">
+            <div class="meter"><div class="v tabular" id="m-vu">–</div><div class="k">virtual users</div></div>
+            <div class="meter"><div class="v tabular" id="m-req">–</div><div class="k">requests</div></div>
+            <div class="meter"><div class="v tabular" id="m-avg">–</div><div class="k">avg response</div></div>
+            <div class="meter"><div class="v tabular" id="m-err">–</div><div class="k">errors</div></div>
           </div>
-          <a href="blog.html" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:translate-x-0.5 transition">
-            All posts <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-        </div>
-        <div id="latest-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Rendered from posts.json -->
+          <button class="btn" id="run-test" type="button">Run the load test</button>
+          <p class="verdict" id="verdict" aria-live="polite"></p>
+          <noscript><p class="verdict">This demonstration needs JavaScript; the numbers above are the whole story.</p></noscript>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="py-12 sm:py-16 border-t border-slate-200 dark:border-brand-borderDark/60">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">05 / contact</p>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">Let's talk testing.</h2>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-7 max-w-xl mx-auto">On a similar path, hiring for SDET roles, or just want to trade notes on flaky tests? Find me here.</p>
-        <div class="flex flex-wrap items-center justify-center gap-3">
-          <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold hover:opacity-90 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-            github.com/devarjun
-          </a>
-          <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0A66C2] text-white text-sm font-semibold hover:opacity-90 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
+    <section class="section" aria-label="About">
+      <div class="col">
+        <dl class="facts rise">
+          <div><dt>Now</dt><dd>Learning SDET in public</dd></div>
+          <div><dt>Before</dt><dd>4.8 years of performance testing</dd></div>
+          <div><dt>Stack</dt><dd>JMeter, BlazeMeter, Playwright</dd></div>
+        </dl>
+        <p class="lead rise">I spent close to five years breaking systems on purpose. Load, stress, endurance: finding where they slow down and fall over. Performance testing taught me to think in systems, not test cases. Now I am learning to build what I used to only break: automation frameworks, API suites, CI pipelines. I write it all down here, mistakes included.</p>
+        <figure class="about-photo slow rise">
+          <img src="photos/arch-1081.jpg" width="1200" height="900" alt="A white concrete building corner rising into a pale sky" loading="lazy">
+        </figure>
+        <div class="record rise">
+          <p class="word">Experience</p>
+          <div class="entry">
+            Performance Engineer, Cognizant <span class="when">2022 – present</span>
+            <p>Load, stress, and endurance testing of enterprise applications: designing workloads, analyzing bottlenecks, and working with dev teams to fix what the numbers reveal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="band" aria-hidden="true">
+      <div class="frame" id="band-frame">
+        <img class="on" src="photos/arch-620.jpg" width="1200" height="900" alt="" loading="lazy">
+        <img src="photos/arch-887.jpg" width="1200" height="900" alt="" loading="lazy">
+        <img src="photos/arch-954.jpg" width="1200" height="900" alt="" loading="lazy">
+      </div>
+    </div>
+
+    <section class="section" aria-label="Toolbox">
+      <div class="col">
+        <h2 class="sec-head rise">Toolbox</h2>
+        <div class="tworows rise">
+          <div class="group">
+            <p class="group-name">Proven</p>
+            <ul class="tworows">
+              <li><span class="t-name">Performance testing</span><span class="t-val">4.8 years</span></li>
+              <li><span class="t-name">Apache JMeter</span><span class="t-val">load generation</span></li>
+              <li><span class="t-name">BlazeMeter</span><span class="t-val">cloud load testing</span></li>
+              <li><span class="t-name">LogicMonitor</span><span class="t-val">infrastructure monitoring</span></li>
+            </ul>
+          </div>
+          <div class="group">
+            <p class="group-name is-learning">Learning</p>
+            <ul class="tworows">
+              <li><span class="t-name">Playwright</span><span class="t-val">browser automation</span></li>
+              <li><span class="t-name">TypeScript</span><span class="t-val">the language</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Writing">
+      <div class="col">
+        <h2 class="sec-head rise">Writing</h2>
+        <ul class="ledger rise" id="writing-list"></ul>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Contact">
+      <div class="col">
+        <p class="contact-sentence rise">On a similar path, hiring SDET roles, or trading notes on flaky tests, find me here.</p>
+        <p class="contact-q rise">Want to talk testing?</p>
+        <div class="contact-links rise">
+          <a class="text-link underlined" href="https://github.com/devarjun" target="_blank" rel="noopener">github.com/devarjun</a>
+          <a class="text-link underlined" href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener">linkedin.com/in/Nagarjunsugavaneswaran</a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="border-t border-slate-200 dark:border-brand-borderDark bg-white dark:bg-brand-darker py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-      <div class="flex items-center gap-2">
-        <span class="font-bold text-slate-800 dark:text-white">becominganengineer.in</span>
-        <span>&bull;</span>
-        <span>Curated by Nagarjun</span>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="https://github.com/devarjun" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition">GitHub</a>
-        <a href="https://www.linkedin.com/in/Nagarjunsugavaneswaran" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 transition">LinkedIn</a>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-emerald-500 transition">
-          Back to Top &uarr;
-        </button>
-      </div>
+  <footer class="site-footer">
+    <div class="line">
+      <span>becominganengineer.in</span>
+      <span class="muted">Curated by Arjun</span>
+      <a href="#" id="to-top">Back to top</a>
     </div>
+    <p class="credits muted">Photographs: Julien Moreau, Matthew Wiebe, Roman Kraft, Todd Quackenbush, via Unsplash.</p>
   </footer>
 
   <script>
-    // Latest posts: pulled from posts.json (built from posts/*.md).
-    async function initLatestPosts() {
-      const container = document.getElementById('latest-posts');
+    function escapeHtml(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    /* Writing: ledger rows from posts.json. */
+    async function initWriting() {
+      const list = document.getElementById("writing-list");
       try {
-        const res = await fetch('posts.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('no posts.json');
+        const res = await fetch("posts.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("no feed");
         const posts = await res.json();
-        const latest = posts.slice(0, 3);
-        if (!latest.length) {
-          container.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400 col-span-full">No posts yet. The first study log is on its way.</p>';
-          return;
-        }
-        container.innerHTML = latest.map(post => `
-          <a href="posts/${post.slug}.html"
-             class="group block rounded-2xl bg-white dark:bg-brand-cardDark border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-            <div class="flex items-center justify-between gap-2 mb-3 text-xs text-slate-500 dark:text-slate-400">
-              <span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">${escapeHtml(post.date)}</span>
-              <span>${escapeHtml(post.readTime)}</span>
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition leading-snug mb-2">
-              ${escapeHtml(post.title)}
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3 mb-4">
-              ${escapeHtml(post.summary)}
-            </p>
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-              Read post <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition"></i>
-            </span>
-          </a>
-        `).join('');
-        if (window.lucide) lucide.createIcons();
+        if (!posts.length) throw new Error("empty");
+        list.innerHTML = posts.slice(0, 6).map(function (p) {
+          return '<li><a href="posts/' + escapeHtml(p.slug) + '.html">' +
+            '<span class="row"><span class="name">' + escapeHtml(p.title) + "</span>" +
+            '<span class="kind">' + escapeHtml(p.readTime || "") + "</span>" +
+            '<span class="year">' + escapeHtml(p.date || "") + "</span></span></a></li>";
+        }).join("");
       } catch (e) {
-        container.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400 col-span-full">Posts are loading. <a href="blog.html" class="text-emerald-600 dark:text-emerald-400 font-semibold">Browse the blog</a>.</p>';
+        list.innerHTML = '<li><span class="stand">No posts yet. The first study log is on its way.</span></li>';
       }
     }
 
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
+    /* The load test: six seconds, honest numbers, simulated. */
+    (function () {
+      var btn = document.getElementById("run-test");
+      var verdict = document.getElementById("verdict");
+      var vu = document.getElementById("m-vu");
+      var req = document.getElementById("m-req");
+      var avg = document.getElementById("m-avg");
+      var err = document.getElementById("m-err");
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var running = false;
 
-    // Light / Dark Theme Toggle
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.contains('dark');
-      if (isDark) {
-        html.classList.remove('dark');
-        localStorage.setItem('sdet_theme', 'light');
-        updateThemeIcons('light');
-      } else {
-        html.classList.add('dark');
-        localStorage.setItem('sdet_theme', 'dark');
-        updateThemeIcons('dark');
+      function setLive(on) {
+        [vu, req, avg, err].forEach(function (el) { el.classList.toggle("live", on); });
       }
-    }
 
-    function updateThemeIcons(mode) {
-      const lightIcon = document.getElementById('theme-icon-light');
-      const darkIcon = document.getElementById('theme-icon-dark');
-      if (mode === 'dark') {
-        lightIcon.classList.add('hidden');
-        darkIcon.classList.remove('hidden');
-      } else {
-        lightIcon.classList.remove('hidden');
-        darkIcon.classList.add('hidden');
+      function finish() {
+        vu.textContent = "50";
+        req.textContent = "1,240";
+        avg.textContent = "312 ms";
+        err.textContent = "0";
+        setLive(false);
+        verdict.textContent = "50 virtual users, 1,240 requests, 0 errors. The page held.";
+        btn.disabled = false;
+        btn.textContent = "Run it again";
+        running = false;
       }
-    }
 
-    function initTheme() {
-      const saved = localStorage.getItem('sdet_theme');
-      if (saved === 'light') {
-        document.documentElement.classList.remove('dark');
-        updateThemeIcons('light');
-      } else {
-        document.documentElement.classList.add('dark');
-        updateThemeIcons('dark');
+      btn.addEventListener("click", function () {
+        if (running) return;
+        running = true;
+        btn.disabled = true;
+        verdict.textContent = "";
+        if (reduced) { finish(); return; }
+        setLive(true);
+        var t0 = performance.now();
+        var dur = 6000;
+        function tick(now) {
+          var t = Math.min(1, (now - t0) / dur);
+          var users = Math.round(1 + 49 * t);
+          var requests = Math.round(1240 * t * t);
+          var latency = Math.round(80 + 232 * Math.min(1, t * 1.15));
+          vu.textContent = users;
+          req.textContent = requests.toLocaleString("en-US");
+          avg.textContent = latency + " ms";
+          err.textContent = "0";
+          if (t < 1) requestAnimationFrame(tick);
+          else finish();
+        }
+        requestAnimationFrame(tick);
+      });
+    })();
+
+    /* Interlude: photographs crossfade, like light shifting. */
+    (function () {
+      var frame = document.getElementById("band-frame");
+      if (!frame) return;
+      var imgs = frame.querySelectorAll("img");
+      if (imgs.length < 2) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var i = 0;
+      setInterval(function () {
+        if (document.hidden) return;
+        imgs[i].classList.remove("on");
+        i = (i + 1) % imgs.length;
+        imgs[i].classList.add("on");
+      }, 6000);
+    })();
+
+    /* Entrances: each part rises once as it arrives. */
+    (function () {
+      var els = document.querySelectorAll(".rise");
+      if (!("IntersectionObserver" in window)) {
+        els.forEach(function (el) { el.classList.add("in"); });
+        return;
       }
-    }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el, idx) {
+        el.style.transitionDelay = Math.min(idx % 4, 3) * 70 + "ms";
+        io.observe(el);
+      });
+    })();
 
-    // Lifecycle
-    document.addEventListener('DOMContentLoaded', () => {
-      initTheme();
-      initLatestPosts();
-      if (window.lucide) lucide.createIcons();
+    document.getElementById("to-top").addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    document.addEventListener("DOMContentLoaded", initWriting);
   </script>
 </body>
 </html>
