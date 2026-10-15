@@ -20,6 +20,7 @@ import json
 import re
 import shutil
 import sys
+from datetime import date
 from datetime import datetime, timezone
 from email.utils import format_datetime
 from pathlib import Path
@@ -272,16 +273,20 @@ def first_code_block(body):
     return m.group(1).rstrip("\n") if m else ""
 
 
-def base(title, body, description="", prefix="", canonical_path="", article_date=""):
+def base(title, body, description="", prefix="", canonical_path="", article_date="", noindex=False):
     """Page shell in the site's Tailwind dark theme.
 
     canonical_path like "posts/my-post.html" ("" = homepage).
     article_date "YYYY-MM-DD" marks the page as an article for OG/JSON-LD.
+    noindex=True omits the canonical link and sets robots to noindex (for 404).
     """
     desc = html.escape(description or SITE_TAGLINE, quote=True)
     t = html.escape(title)
     canon = f"{SITE_URL}/{canonical_path}" if canonical_path else SITE_URL + "/"
+    canon_tag = f'<link rel="canonical" href="{canon}">' if not noindex else ""
+    robots = "noindex, follow" if noindex else "index, follow"
     og_type = "article" if article_date else "website"
+    og_image = f"{SITE_URL}/og-image.png"
     ld = ""
     if article_date:
         ld = (
@@ -302,13 +307,15 @@ def base(title, body, description="", prefix="", canonical_path="", article_date
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{t} | {SITE_TITLE}</title>
 <meta name="description" content="{desc}">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="{canon}">
+<meta name="robots" content="{robots}">
+{canon_tag}
 <meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{canon}">
 <meta property="og:title" content="{t} | {SITE_TITLE}">
 <meta property="og:description" content="{desc}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{og_image}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{og_image}">
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE} - RSS feed" href="{prefix}feed.xml">
 <link rel="icon" href="{FAVICON}">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -491,14 +498,15 @@ def main():
     )
     (out / "about.html").write_text(base("About", about_html, canonical_path="about.html"), encoding="utf-8")
 
-    # Simple 404 page.
+    # Simple 404 page: never indexed, no canonical (nothing to canonicalize to).
     (out / "404.html").write_text(
         base("Not found",
              '<div class="text-center py-16">\n'
              '<h1 class="text-4xl font-extrabold text-white mb-3">Not found</h1>\n'
              '<p class="text-slate-400 text-sm mb-6">That page does not exist.</p>\n'
              '<a class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition" href="index.html">Back home</a>\n'
-             "</div>"),
+             "</div>",
+             noindex=True),
         encoding="utf-8",
     )
 
@@ -524,6 +532,52 @@ def main():
     (out / "posts.json").write_text(
         json.dumps(feed_items, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+
+    # XML sitemap: every indexable page, so crawlers find new posts fast.
+    today = date.today().isoformat()
+    sitemap_urls = [
+        ("", today),                       # homepage
+        ("blog.html", today),
+        ("about.html", today),
+    ] + [(f"posts/{p['slug']}.html", p["date_str"]) for p in posts]
+    sitemap_xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "".join(
+            f"  <url>\n    <loc>{SITE_URL}/{path}</loc>\n    <lastmod>{lastmod}</lastmod>\n  </url>\n"
+            for path, lastmod in sitemap_urls
+        )
+        + "</urlset>\n"
+    )
+    (out / "sitemap.xml").write_text(sitemap_xml, encoding="utf-8")
+
+    # robots.txt: allow everything, point crawlers at the sitemap.
+    (out / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n",
+        encoding="utf-8",
+    )
+
+    # llms.txt: a plain-text map of the site for AI search crawlers and agents.
+    llms_lines = [
+        "# becominganengineer.in",
+        "",
+        "> Portfolio and learning-in-public blog of Nagarjun, a Performance",
+        "> Engineer (4.8 years, Cognizant) becoming an SDET. Performance testing,",
+        "> JMeter, LoadRunner, and Playwright study notes.",
+        "",
+        "## Pages",
+        "",
+        f"- [Home]({SITE_URL}/): portfolio, toolbox, experience, profiles",
+        f"- [Blog]({SITE_URL}/blog.html): all study-log posts",
+        f"- [About]({SITE_URL}/about.html): professional summary",
+        "",
+        "## Posts",
+        "",
+    ]
+    for p in posts:
+        llms_lines.append(f"- [{p['title']}]({SITE_URL}/posts/{p['slug']}.html) ({p['date_str']})")
+    llms_lines += ["", f"RSS feed: {SITE_URL}/feed.xml", ""]
+    (out / "llms.txt").write_text("\n".join(llms_lines), encoding="utf-8")
 
     print(f"Built {len(posts)} post(s) into {out}")
 
