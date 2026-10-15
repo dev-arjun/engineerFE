@@ -369,6 +369,16 @@ body::before {{ content: ""; position: fixed; inset: 0; z-index: -1; pointer-eve
 <a href="{prefix}index.html" class="hover:text-emerald-400 transition">Back to home</a>
 </div>
 </footer>
+<script>
+// Tenure: months since joining Cognizant (Jan 2022), auto-updates every month.
+(function () {{
+  var start = new Date(2022, 0, 1);
+  var now = new Date();
+  var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  var years = (months / 12).toFixed(1);
+  document.querySelectorAll('[data-tenure]').forEach(function (el) {{ el.textContent = years; }});
+}})();
+</script>
 </body>
 </html>
 """
@@ -472,9 +482,12 @@ def main():
 
     # About page.
     meta, about_body = parse_front_matter(ROOT / "about.md")
+    about_rendered = md_to_html(about_body).replace(
+        "4.8 years", '<span data-tenure>4.8</span> years'
+    )
     about_html = (
         f"<h1 class=\"text-3xl font-extrabold text-white tracking-tight mb-4\">{html.escape(meta.get('title', 'About'))}</h1>\n"
-        f'<div class="liquid rounded-3xl p-6 sm:p-10"><div class="post-body">{md_to_html(about_body)}</div></div>'
+        f'<div class="liquid rounded-3xl p-6 sm:p-10"><div class="post-body">{about_rendered}</div></div>'
     )
     (out / "about.html").write_text(base("About", about_html, canonical_path="about.html"), encoding="utf-8")
 

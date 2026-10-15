@@ -2,8 +2,8 @@
 title: About
 ---
 
-Hi, I'm Arjun.
+Performance Test Engineer with 4.8 years of hands-on experience in performance testing of large-scale enterprise applications. Strong in LoadRunner and Apache JMeter scripting across Web (HTTP/HTML) and Web Services protocols, covering load, stress, endurance, and scalability testing.
 
-I'm a performance tester with close to five years of experience, and right now I'm learning Playwright with one goal in mind: becoming an SDET. I started this blog to write about what I learn along the way, in public, mistakes included.
+Experienced in leading small teams, identifying bottlenecks, and using AI-assisted approaches to reduce manual effort in testing workflows.
 
-If you're on a similar path, I hope something here helps you too.
+You can find my toolbox, experience, and profiles on the [homepage](index.html), and my study logs on the [blog](blog.html).
