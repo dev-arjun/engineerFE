@@ -1,0 +1,17 @@
+# becominganengineer.in
+
+> Portfolio and learning-in-public blog of Nagarjun, a Performance
+> Engineer (4.8 years, Cognizant) becoming an SDET. Performance testing,
+> JMeter, LoadRunner, and Playwright study notes.
+
+## Pages
+
+- [Home](https://becominganengineer.in/): portfolio, toolbox, experience, profiles
+- [Blog](https://becominganengineer.in/blog.html): all study-log posts
+- [About](https://becominganengineer.in/about.html): professional summary
+
+## Posts
+
+- [Hello, world](https://becominganengineer.in/posts/hello-world.html) (2026-10-04)
+
+RSS feed: https://becominganengineer.in/feed.xml
