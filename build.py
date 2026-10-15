@@ -334,10 +334,17 @@ body {{ font-family: 'Plus Jakarta Sans', sans-serif; }}
 .post-body p code, .post-body li code, .post-body h1 code, .post-body h2 code, .post-body h3 code {{ font-family: 'JetBrains Mono', monospace; background: #1e293b; padding: 0.15rem 0.4rem; border-radius: 0.375rem; font-size: 0.85em; color: #6ee7b7; }}
 .post-body img {{ border-radius: 0.75rem; margin: 1.1rem 0; }}
 .post-body hr {{ border-color: #1e293b; margin: 1.75rem 0; }}
+.liquid {{ position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03) 55%, rgba(255,255,255,0.06));
+  -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.13);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(255,255,255,0.04); }}
+body::before {{ content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(640px 420px at 12% -4%, rgba(16,185,129,0.08), transparent 60%), radial-gradient(560px 420px at 88% 6%, rgba(56,189,248,0.06), transparent 60%); }}
 </style>{ld}
 </head>
 <body class="bg-[#06080F] text-slate-200 min-h-screen flex flex-col">
-<header class="sticky top-0 z-40 border-b border-slate-800/70" style="background: rgba(11,15,25,.85); backdrop-filter: blur(12px);">
+<header class="sticky top-0 z-40 border-b border-slate-800/70" style="background: rgba(11,15,25,.55); backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%); border-color: rgba(255,255,255,0.1);">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between h-16">
 <a href="{prefix}index.html" class="flex items-center gap-2.5">
@@ -417,7 +424,7 @@ def main():
     for p in posts:
         badge = ' <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/30">Placeholder</span>' if p["placeholder"] else ""
         items.append(
-            '<article class="rounded-2xl bg-[#111726] border border-slate-800 p-6 hover:border-emerald-500/40 transition">\n'
+            '<article class="liquid rounded-2xl p-6 hover:border-emerald-500/40 transition">\n'
             f'<h2 class="text-xl font-bold text-white mb-1.5"><a class="hover:text-emerald-400 transition" href="posts/{p["slug"]}.html">{html.escape(p["title"])}</a>{badge}</h2>\n'
             f'<div class="text-xs text-slate-500 mb-2.5"><time datetime="{p["date_str"]}">{p["date_human"]}</time> &bull; {html.escape(p["readtime"])}</div>\n'
             f'<p class="text-sm text-slate-400 leading-relaxed">{html.escape(p["excerpt"])}</p>\n'
@@ -453,7 +460,7 @@ def main():
             f'<div class="flex items-center gap-2 text-xs text-slate-500 mb-3"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono font-bold">{p["date_human"]}</span><span>&bull;</span><span>{html.escape(p["readtime"])}</span></div>\n'
             f'<h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-4">{html.escape(p["title"])}</h1>\n'
             + tags_block
-            + f'<div class="post-body">{p["html"]}</div>\n'
+            + f'<div class="liquid rounded-3xl p-6 sm:p-10"><div class="post-body">{p["html"]}</div></div>\n'
             + "</article>\n"
             '<p class="mt-10 pt-6 border-t border-slate-800/70"><a class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition" href="../blog.html">&larr; All posts</a></p>'
         )
@@ -467,7 +474,7 @@ def main():
     meta, about_body = parse_front_matter(ROOT / "about.md")
     about_html = (
         f"<h1 class=\"text-3xl font-extrabold text-white tracking-tight mb-4\">{html.escape(meta.get('title', 'About'))}</h1>\n"
-        f'<div class="post-body">{md_to_html(about_body)}</div>'
+        f'<div class="liquid rounded-3xl p-6 sm:p-10"><div class="post-body">{md_to_html(about_body)}</div></div>'
     )
     (out / "about.html").write_text(base("About", about_html, canonical_path="about.html"), encoding="utf-8")
 
